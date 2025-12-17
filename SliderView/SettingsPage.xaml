@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExpenseTracker.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Settings"
+    BackgroundColor="#F5F6FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Settings Header -->
+           <Frame BackgroundColor="#6366F1"
+                   CornerRadius="20"
+                   Padding="25"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Settings"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <Label Text="Adjust your preferences and account settings."
+                           FontSize="15"
+                           TextColor="White"
+                           Opacity="0.9"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- NOTIFICATION SECTION -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="15">
+
+                <VerticalStackLayout Spacing="20">
+
+                    <Label Text="Notifications"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#444" />
+
+                    <!-- Notifications Toggle -->
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,5">
+                        <Label Text="Enable Notifications"
+                               FontSize="16"
+                               VerticalOptions="Center" />
+                        <Switch x:Name="NotifySwitch"
+                                Grid.Column="1"
+                                IsToggled="True" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,5">
+    <Label Text="Enable Dark Mode"
+           FontSize="16"
+           VerticalOptions="Center" />
+    <Switch x:Name="DarkModeSwitch"
+            Grid.Column="1"
+            Toggled="DarkModeSwitch_Toggled"
+            IsToggled="False" />
+</Grid>
+
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- ACCOUNT SECTION -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="15">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="Account"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#444" />
+
+                    <Button Text="Change Password"
+                            BackgroundColor="#EEF1F7"
+                            TextColor="#111"
+                            CornerRadius="12"
+                            Padding="10"
+                            Clicked="OnChangePasswordClicked" />
+
+                    <Button Text="About App"
+                            BackgroundColor="#EEF1F7"
+                            TextColor="#111"
+                            CornerRadius="12"
+                            Padding="10"
+                            Clicked="OnAboutClicked" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- LOGOUT SECTION -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="15">
+
+                <Button Text="Logout"
+                        BackgroundColor="#FF4C4C"
+                        TextColor="White"
+                        CornerRadius="12"
+                        FontAttributes="Bold"
+                        Padding="12"
+                        Clicked="OnLogoutClicked" />
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

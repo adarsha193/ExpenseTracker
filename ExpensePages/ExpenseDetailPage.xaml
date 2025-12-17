@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.ExpenseDetailPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Expense Details"
+             BackgroundColor="#F8F9FA"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        <!-- HEADER -->
+        <Grid Grid.Row="0" Padding="0" HeightRequest="240">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6366F1" Offset="0.0"/>
+                    <GradientStop Color="#8B5CF6" Offset="0.5"/>
+                    <GradientStop Color="#A855F7" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            
+            <VerticalStackLayout Padding="24,20,24,20" Spacing="20" VerticalOptions="Center">
+                <Frame x:Name="CategoryIconFrame"
+                       BackgroundColor="White"
+                       BorderColor="Transparent"
+                       CornerRadius="24"
+                       Padding="12"
+                       WidthRequest="80"
+                       HeightRequest="80"
+                       HorizontalOptions="Center">
+                    <Label x:Name="CategoryIcon" 
+                           Text="💰" 
+                           FontSize="40" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center"/>
+                </Frame>
+                
+                <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                    <Label x:Name="CategoryLabel"
+                           Text="Category"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                    <Label x:Name="AmountLabel"
+                           Text="₹0.00"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           LineBreakMode="NoWrap"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="1" BackgroundColor="#F8F9FA">
+            <VerticalStackLayout Padding="20,24" Spacing="20">
+
+                <!-- BASIC INFO SECTION -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Expense Information"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    
+                    <!-- Date -->
+                    <Frame BackgroundColor="White"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="14"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderWidth="1">
+                        <HorizontalStackLayout Spacing="12">
+                            <Frame BackgroundColor="#FEF08A"
+                                   BorderColor="Transparent"
+                                   CornerRadius="10"
+                                   Padding="8"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center">
+                                <Label Text="📅" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Frame>
+                            <VerticalStackLayout Spacing="3" VerticalOptions="Center">
+                                <Label Text="Date" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                <Label x:Name="DateLabel" Text="Dec 12, 2025" FontSize="14" TextColor="#1F2937" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- DESCRIPTION SECTION -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Description"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    
+                    <Frame BackgroundColor="White"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="14"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderWidth="1">
+                        <Label x:Name="DescriptionLabel" 
+                               Text="No description provided" 
+                               FontSize="14" 
+                               TextColor="#1F2937"
+                               LineBreakMode="WordWrap"/>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- SHOP DETAILS SECTION -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Shop Details"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    
+                    <!-- Shop Name -->
+                    <Frame x:Name="ShopNameFrame"
+                           BackgroundColor="White"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="14"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderWidth="1"
+                           IsVisible="False">
+                        <HorizontalStackLayout Spacing="12">
+                            <Frame BackgroundColor="#DBEAFE"
+                                   BorderColor="Transparent"
+                                   CornerRadius="10"
+                                   Padding="8"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center">
+                                <Label Text="🏪" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Frame>
+                            <VerticalStackLayout Spacing="3" VerticalOptions="Center">
+                                <Label Text="Shop Name" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                <Label x:Name="ShopNameLabel" Text="N/A" FontSize="14" TextColor="#1F2937" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <!-- Location -->
+                    <Frame x:Name="LocationFrame"
+                           BackgroundColor="White"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="14"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderWidth="1"
+                           IsVisible="False">
+                        <HorizontalStackLayout Spacing="12">
+                            <Frame BackgroundColor="#DCFCE7"
+                                   BorderColor="Transparent"
+                                   CornerRadius="10"
+                                   Padding="8"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center">
+                                <Label Text="📍" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Frame>
+                            <VerticalStackLayout Spacing="3" VerticalOptions="Center">
+                                <Label Text="Location" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                <Label x:Name="LocationLabel" Text="N/A" FontSize="14" TextColor="#1F2937" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <!-- Address -->
+                    <Frame x:Name="AddressFrame"
+                           BackgroundColor="White"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="14"
+                           Padding="16"
+                           HasShadow="False"
+                           BorderWidth="1"
+                           IsVisible="False">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="12">
+                                <Frame BackgroundColor="#FCE7F3"
+                                       BorderColor="Transparent"
+                                       CornerRadius="10"
+                                       Padding="8"
+                                       WidthRequest="40"
+                                       HeightRequest="40"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Start">
+                                    <Label Text="🏠" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Frame>
+                                <VerticalStackLayout Spacing="3" VerticalOptions="Start">
+                                    <Label Text="Address" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                    <Label x:Name="AddressLabel" Text="N/A" FontSize="14" TextColor="#1F2937" LineBreakMode="WordWrap"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- ACTION BUTTON -->
+                <Button Text="← Back to Expenses"
+                        BackgroundColor="White"
+                        TextColor="#6366F1"
+                        FontSize="17"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="56"
+                        BorderColor="#6366F1"
+                        BorderWidth="2"
+                        Padding="0"
+                        Clicked="OnBackClicked"
+                        Margin="0,16,0,20"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

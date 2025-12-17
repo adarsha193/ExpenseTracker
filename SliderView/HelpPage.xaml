@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.HelpPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Help">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20">
+
+            <!-- HEADER -->
+            <Frame BackgroundColor="#6366F1"
+                   CornerRadius="20"
+                   Padding="25"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Help and Support"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <Label Text="Get answers, troubleshoot issues, or contact us."
+                           FontSize="15"
+                           TextColor="White"
+                           Opacity="0.9"/>
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- FAQ CARD -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="20"
+                   Padding="20"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Frequently Asked Questions"
+                           FontSize="20"
+                           FontAttributes="Bold"/>
+
+                    <!-- Q1 -->
+                    <Grid>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="• How to add a new expense?"
+                                   FontAttributes="Bold"
+                                   FontSize="16"/>
+
+                            <Label Text="Open Dashboard → tap 'Add Expense' → enter details."
+                                   FontSize="14"
+                                   Opacity="0.8"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Q2 -->
+                    <Grid>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="• How to edit/delete an expense?"
+                                   FontAttributes="Bold"
+                                   FontSize="16"/>
+
+                            <Label Text="Open any expense → choose Edit or Delete."
+                                   FontSize="14"
+                                   Opacity="0.8"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Q3 -->
+                    <Grid>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="• How to enable cloud backup?"
+                                   FontAttributes="Bold"
+                                   FontSize="16"/>
+
+                            <Label Text="Go to Settings → Backup and Sync → Enable Auto Backup."
+                                   FontSize="14"
+                                   Opacity="0.8"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+
+            <!-- TROUBLESHOOTING CARD -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="20"
+                   Padding="20"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Troubleshooting"
+                           FontSize="20"
+                           FontAttributes="Bold"/>
+
+                    <!-- T1 -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="• App not opening or crashing?"
+                               FontAttributes="Bold"
+                               FontSize="16"/>
+
+                        <Label Text="Restart device → try again → clear app cache if needed."
+                               FontSize="14"
+                               Opacity="0.8"/>
+                    </VerticalStackLayout>
+
+                    <!-- T2 -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="• Data not syncing?"
+                               FontAttributes="Bold"
+                               FontSize="16"/>
+
+                        <Label Text="Check internet → re-login → retry syncing."
+                               FontSize="14"
+                               Opacity="0.8"/>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+
+            <!-- CONTACT CARD -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="20"
+                   Padding="20"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Contact Support"
+                           FontSize="20"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="Need more help? Contact us anytime."
+                           FontSize="14"
+                           Opacity="0.7"/>
+
+                    <Label Text="📧  support@expensetracker.com"
+                           FontSize="17"
+                           TextColor="#6366F1"/>
+
+                    <Label Text="📞  +91 98765 43210"
+                           FontSize="17"
+                           TextColor="#6366F1"/>
+                </VerticalStackLayout>
+
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

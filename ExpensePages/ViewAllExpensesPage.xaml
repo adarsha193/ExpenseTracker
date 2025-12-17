@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.ViewAllExpensesPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExpenseTracker"
+             Title="All Expenses"
+             BackgroundColor="#F8F9FA">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringLengthConverter x:Key="StringLengthConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        
+        <!-- HEADER -->
+        <Grid Grid.Row="0" Padding="0" HeightRequest="120">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6366F1" Offset="0.0"/>
+                    <GradientStop Color="#8B5CF6" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            
+            <VerticalStackLayout Padding="20" Spacing="10" VerticalOptions="Center">
+                <Label Text="All Expenses"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                <Label Text="Complete expense history"
+                       FontSize="14"
+                       TextColor="White"
+                       Opacity="0.8"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- EXPENSES LIST -->
+        <Grid Grid.Row="1" RowDefinitions="Auto,*">
+            
+            <!-- SEARCH SECTION -->
+            <VerticalStackLayout Grid.Row="0" Padding="20" Spacing="12">
+                <Label x:Name="TotalExpensesLabel"
+                       Text="Total Expenses: ₹0"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="#1F2937"/>
+                
+                <!-- Search Bar -->
+                <SearchBar x:Name="SearchBar"
+                          Placeholder="Search by category or amount..."
+                          PlaceholderColor="#9CA3AF"
+                          TextColor="#1F2937"
+                          BackgroundColor="White"
+                          SearchButtonPressed="OnSearchButtonPressed"
+                          TextChanged="OnSearchTextChanged"
+                          FontSize="15"
+                          ShowsCancelButton="False"/>
+            </VerticalStackLayout>
+
+            <!-- Loading Indicator -->
+            <VerticalStackLayout Grid.Row="1"
+                                x:Name="LoadingIndicatorExpenses"
+                                BackgroundColor="#F8F9FA"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Spacing="16">
+                <ActivityIndicator IsRunning="True"
+                                   Color="#6366F1"
+                                   Scale="1.5"/>
+                <Label Text="Loading expenses..."
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <!-- Empty State -->
+            <VerticalStackLayout Grid.Row="1"
+                                x:Name="EmptyStateExpenses"
+                                IsVisible="False"
+                                BackgroundColor="#F8F9FA"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Spacing="16"
+                                Padding="40">
+                <Label Text="📋"
+                       FontSize="64"
+                       HorizontalOptions="Center"/>
+                <Label Text="No Expenses Found"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="#1F2937"
+                       HorizontalOptions="Center"/>
+                <Label Text="You haven't recorded any expenses yet. Start by adding your first expense!"
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+
+            <!-- EXPENSES LIST VIEW -->
+            <CollectionView Grid.Row="1" 
+                           x:Name="ExpensesCollectionView"
+                           SelectionMode="None"
+                           Margin="0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="White"
+                               BorderColor="#E5E7EB"
+                               CornerRadius="16"
+                               Padding="16"
+                               HasShadow="False"
+                               Margin="20,8,20,8"
+                               BorderWidth="1">
+                            <VerticalStackLayout Spacing="12">
+                                <!-- Top Row: Icon, Category, Amount -->
+                                <Grid ColumnDefinitions="56,*,Auto" ColumnSpacing="14">
+                                    <Frame Grid.Column="0" 
+                                           BackgroundColor="#EEF2FF"
+                                           BorderColor="Transparent"
+                                           CornerRadius="13"
+                                           Padding="8"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center">
+                                        <Label Text="{Binding Icon}" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Frame>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                                        <Label Text="{Binding Category}" FontSize="16" FontAttributes="Bold" TextColor="#1F2937"/>
+                                        <Label Text="{Binding Date}" FontSize="12" TextColor="#9CA3AF"/>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="4" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Label Text="{Binding Amount, StringFormat='₹{0:F2}'}" FontSize="18" FontAttributes="Bold" TextColor="#EF4444" HorizontalOptions="End"/>
+                                        <Label Text="View" FontSize="12" TextColor="#6366F1" Padding="10,5" HorizontalOptions="End">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnViewExpenseClicked" NumberOfTapsRequired="1"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!-- Description if available -->
+                                <VerticalStackLayout IsVisible="{Binding Description, Converter={StaticResource StringLengthConverter}}" Spacing="4">
+                                    <Label Text="Description" FontSize="12" FontAttributes="Bold" TextColor="#6B7280"/>
+                                    <Label Text="{Binding Description}" FontSize="13" TextColor="#4B5563" LineBreakMode="WordWrap"/>
+                                </VerticalStackLayout>
+
+                                <!-- Shop Details if available -->
+                                <VerticalStackLayout IsVisible="{Binding ShopName, Converter={StaticResource StringLengthConverter}}" Spacing="4">
+                                    <Label Text="Shop Details" FontSize="12" FontAttributes="Bold" TextColor="#6B7280"/>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                            <Label Text="Shop:" FontSize="11" TextColor="#9CA3AF"/>
+                                            <Label Text="{Binding ShopName}" FontSize="12" TextColor="#1F2937"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                            <Label Text="Location:" FontSize="11" TextColor="#9CA3AF"/>
+                                            <Label Text="{Binding Location}" FontSize="12" TextColor="#1F2937"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                    <VerticalStackLayout Spacing="2" IsVisible="{Binding Address, Converter={StaticResource StringLengthConverter}}">
+                                        <Label Text="Address:" FontSize="11" TextColor="#9CA3AF"/>
+                                        <Label Text="{Binding Address}" FontSize="12" TextColor="#1F2937" LineBreakMode="WordWrap"/>
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+
+</ContentPage>

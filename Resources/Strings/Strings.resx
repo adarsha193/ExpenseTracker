@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- General -->
+  <data name="AppTitle" xml:space="preserve">
+    <value>Expense Tracker</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>Login to ExpenseTracker</value>
+  </data>
+  <data name="SignInPrompt" xml:space="preserve">
+    <value>Sign in to your account</value>
+  </data>
+
+  <!-- Login page -->
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+
+  <!-- Registration -->
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="JoinUs" xml:space="preserve">
+    <value>Join us and start tracking expenses</value>
+  </data>
+
+  <!-- Forgot Password -->
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="ResetInstruction" xml:space="preserve">
+    <value>Enter your email address and we'll send you instructions to reset your password.</value>
+  </data>
+   <data name="ResetPassword" xml:space="preserve">
+    <value>Reset your password.</value>
+  </data>
+  <data name="PasswordChangeInstruction" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
+  <data name="SendResetLink" xml:space="preserve">
+    <value>Send Reset Link</value>
+  </data>
+
+  <!-- Placeholders and small labels -->
+  <data name="PlaceholderEmail" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="PlaceholderPassword" xml:space="preserve">
+    <value>Enter your password</value>
+  </data>
+  <data name="OrLabel" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="NoAccountPrompt" xml:space="preserve">
+    <value>Don't have an account?</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="PlaceholderFullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="PlaceholderCreatePassword" xml:space="preserve">
+    <value>Create a strong password</value>
+  </data>
+  <data name="PlaceholderConfirmPassword" xml:space="preserve">
+    <value>Confirm your password</value>
+  </data>
+  <data name="AlreadyHaveAccount" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="RememberPassword" xml:space="preserve">
+    <value>Remember your password?</value>
+  </data>
+
+  <!-- Alert titles and common messages -->
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="PleaseEnterEmailAndPassword" xml:space="preserve">
+    <value>Please enter email and password</value>
+  </data>
+  <data name="PleaseEnterEmail" xml:space="preserve">
+    <value>Please enter your email address</value>
+  </data>
+  <data name="PleaseFillAllFields" xml:space="preserve">
+    <value>Please fill in all fields</value>
+  </data>
+  <data name="PasswordsDoNotMatch" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Account created successfully!</value>
+  </data>
+  <data name="ResetLinkSent" xml:space="preserve">
+    <value>Reset link sent to your email!</value>
+  </data>
+
+  <!-- Navigation Routes -->
+  <data name="RouteLogin" xml:space="preserve">
+    <value>///login</value>
+  </data>
+  <data name="RouteSignup" xml:space="preserve">
+    <value>///signup</value>
+  </data>
+  <data name="RouteForgotPassword" xml:space="preserve">
+    <value>///forgotpassword</value>
+  </data>
+  <data name="RouteAddExpense" xml:space="preserve">
+    <value>///addexpense</value>
+  </data>
+  <data name="RouteViewAllExpenses" xml:space="preserve">
+    <value>///viewallexpenses</value>
+  </data>
+  <data name="RouteBack" xml:space="preserve">
+    <value>..</value>
+  </data>
+
+  <!-- Alert Messages -->
+  <data name="ValidationError" xml:space="preserve">
+    <value>Validation Error</value>
+  </data>
+  <data name="PleaseSelectCategory" xml:space="preserve">
+    <value>Please select a category</value>
+  </data>
+  <data name="PleaseEnterAmount" xml:space="preserve">
+    <value>Please enter an amount</value>
+  </data>
+  <data name="PleaseEnterValidAmount" xml:space="preserve">
+    <value>Please enter a valid amount</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User not found. Please login again.</value>
+  </data>
+  <data name="ExpenseSavedSuccess" xml:space="preserve">
+    <value>Expense of ₹{0} for {1} saved successfully!</value>
+  </data>
+  <data name="FailedToLoadExpenses" xml:space="preserve">
+    <value>Failed to load expenses: {0}</value>
+  </data>
+  <data name="FailedToViewExpense" xml:space="preserve">
+    <value>Failed to view expense: {0}</value>
+  </data>
+  <data name="RegistrationFailed" xml:space="preserve">
+    <value>Registration failed</value>
+  </data>
+  <data name="FailedToSendResetLink" xml:space="preserve">
+    <value>Failed to send reset link</value>
+  </data>
+  <data name="AnErrorOccurred" xml:space="preserve">
+    <value>An error occurred: {0}</value>
+  </data>
+  <data name="LoginFailed" xml:space="preserve">
+    <value>Login failed</value>
+  </data>
+  <data name="LogoutConfirm" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  <data name="LogoutFailed" xml:space="preserve">
+    <value>Logout failed</value>
+  </data>
+  <data name="LogoutError" xml:space="preserve">
+    <value>Logout error: {0}</value>
+  </data>
+  <data name="ProfilePageComingSoon" xml:space="preserve">
+    <value>Profile page coming soon</value>
+  </data>
+  <data name="SettingsPageComingSoon" xml:space="preserve">
+    <value>Settings page coming soon</value>
+  </data>
+  <data name="HelpPageComingSoon" xml:space="preserve">
+    <value>Help page coming soon</value>
+  </data>
+  <data name="FailedToLoadProfile" xml:space="preserve">
+    <value>Failed to load profile: {0}</value>
+  </data>
+  <data name="NameAndEmailRequired" xml:space="preserve">
+    <value>Name and email are required</value>
+  </data>
+  <data name="PleaseEnterValidEmail" xml:space="preserve">
+    <value>Please enter a valid email address</value>
+  </data>
+  <data name="ProfileUpdatedSuccess" xml:space="preserve">
+    <value>Profile updated successfully!</value>
+  </data>
+  <data name="PasswordChangeComingSoon" xml:space="preserve">
+    <value>Password change feature coming soon</value>
+  </data>
+  <data name="DeleteAccountConfirm" xml:space="preserve">
+    <value>Delete Account</value>
+  </data>
+  <data name="DeleteAccountMessage" xml:space="preserve">
+    <value>Are you sure you want to delete your account? This action cannot be undone.</value>
+  </data>
+  <data name="AccountDeleted" xml:space="preserve">
+    <value>Your account has been deleted</value>
+  </data>
+  <data name="YesButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NoButton" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="FailedToSaveExpense" xml:space="preserve">
+    <value>Failed to save expense: {0}</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+
+  <!-- Salary Management -->
+  <data name="SalaryManagement" xml:space="preserve">
+    <value>💰 Salary Management</value>
+  </data>
+  <data name="CurrentMonthlySalary" xml:space="preserve">
+    <value>Current Monthly Salary</value>
+  </data>
+  <data name="NoSalaryEntered" xml:space="preserve">
+    <value>No salary entered</value>
+  </data>
+  <data name="EnterSalaryDetails" xml:space="preserve">
+    <value>Enter Salary Details</value>
+  </data>
+  <data name="MonthlyAmount" xml:space="preserve">
+    <value>Monthly Amount (₹)</value>
+  </data>
+  <data name="PaymentFrequency" xml:space="preserve">
+    <value>Payment Frequency</value>
+  </data>
+  <data name="SelectFrequency" xml:space="preserve">
+    <value>Select frequency</value>
+  </data>
+  <data name="SalaryNotes" xml:space="preserve">
+    <value>Notes (Optional)</value>
+  </data>
+  <data name="SaveSalary" xml:space="preserve">
+    <value>💾 Save Salary</value>
+  </data>
+  <data name="SalarySavedSuccessfully" xml:space="preserve">
+    <value>Salary saved successfully!</value>
+  </data>
+  <!-- Investment Tracking -->
+  <data name="InvestmentTracking" xml:space="preserve">
+    <value>📈 Investment Tracking</value>
+  </data>
+  <data name="TotalPortfolioValue" xml:space="preserve">
+    <value>Total Portfolio Value</value>
+  </data>
+  <data name="NoInvestmentsYet" xml:space="preserve">
+    <value>No Investments Yet</value>
+  </data>
+  <data name="StartTrackingInvestments" xml:space="preserve">
+    <value>Start tracking your investments to build your portfolio</value>
+  </data>
+  <data name="AddInvestment" xml:space="preserve">
+    <value>➕ Add Investment</value>
+  </data>
+  <!-- Monthly Budget -->
+  <data name="MonthlyBudget" xml:space="preserve">
+    <value>💳 Monthly Budget</value>
+  </data>
+  <data name="TotalBudget" xml:space="preserve">
+    <value>Total Budget</value>
+  </data>
+  <data name="TotalSpent" xml:space="preserve">
+    <value>Total Spent</value>
+  </data>
+  <data name="AddCategoryBudget" xml:space="preserve">
+    <value>➕ Add Category Budget</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="EnterBudgetAmount" xml:space="preserve">
+    <value>Enter monthly budget for {0} (₹)</value>
+  </data>
+  <data name="NoBudgetSet" xml:space="preserve">
+    <value>No Budget Set</value>
+  </data>
+  <data name="CreateBudgetToTrack" xml:space="preserve">
+    <value>Create a budget to track your spending</value>
+  </data>
+  <data name="BudgetExceeded" xml:space="preserve">
+    <value>Budget Exceeded</value>
+  </data>
+  <data name="ExceededBy" xml:space="preserve">
+    <value>⚠️ Exceeded by ₹{0:N2}</value>
+  </data>
+  <data name="BudgetAlerts" xml:space="preserve">
+    <value>🚨 Budget Alerts</value>
+  </data>
+  <!-- AI Suggestions -->
+  <data name="AISuggestions" xml:space="preserve">
+    <value>🤖 Smart Suggestions</value>
+  </data>
+  <data name="BudgetSuggestions" xml:space="preserve">
+    <value>Budget Recommendations</value>
+  </data>
+  <data name="IncreaseSpending" xml:space="preserve">
+    <value>Consider increasing your {0} budget</value>
+  </data>
+  <data name="DecreaseSpending" xml:space="preserve">
+    <value>You could reduce your {0} budget</value>
+  </data>
+  <data name="ImprovesSavings" xml:space="preserve">
+    <value>Improve your savings rate</value>
+  </data>
+  <data name="SavingsGoal" xml:space="preserve">
+    <value>Target: Save at least 20% of your income</value>
+  </data>
+  <data name="SpendingInsights" xml:space="preserve">
+    <value>Spending Insights</value>
+  </data>
+  <!-- Dashboard Summary -->
+  <data name="DashboardSummary" xml:space="preserve">
+    <value>Dashboard Summary</value>
+  </data>
+  <data name="YourSalary" xml:space="preserve">
+    <value>Your Salary</value>
+  </data>
+  <data name="YourInvestments" xml:space="preserve">
+    <value>Your Investments</value>
+  </data>
+  <data name="BudgetProgress" xml:space="preserve">
+    <value>Budget Progress</value>
+  </data>
+  <data name="SavingsRate" xml:space="preserve">
+    <value>Savings Rate</value>
+  </data>
+  <data name="MonthlyOverview" xml:space="preserve">
+    <value>Monthly Overview</value>
+  </data>
+</root>

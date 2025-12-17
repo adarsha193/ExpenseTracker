@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.LoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:ExpenseTracker.Resources"
+             Title="{x:Static resx:Strings.AppTitle}"
+             BackgroundColor="#F8F9FA"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        
+        <!-- HEADER GRADIENT -->
+        <Grid Grid.Row="0" Padding="0" HeightRequest="140">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6366F1" Offset="0.0"/>
+                    <GradientStop Color="#8B5CF6" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            
+            <VerticalStackLayout Padding="20" Spacing="10" VerticalOptions="End">
+                  <Label Text="{x:Static resx:Strings.WelcomeBack}"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                  <Label Text="{x:Static resx:Strings.SignInPrompt}"
+                       FontSize="14"
+                       TextColor="White"
+                       Opacity="0.8"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- FORM CONTENT -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="16">
+
+                <!-- EMAIL SECTION -->
+                <VerticalStackLayout Spacing="8">
+                             <Label Text="{x:Static resx:Strings.EmailAddress}"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 8" BackgroundColor="White" Padding="0">
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="{x:Static resx:Strings.PlaceholderEmail}"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               TextColor="#1F2937"
+                               Keyboard="Email"
+                               Padding="12"
+                               ClearButtonVisibility="Never"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- PASSWORD SECTION -->
+                <VerticalStackLayout Spacing="8">
+                             <Label Text="{x:Static resx:Strings.Password}"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 8" BackgroundColor="White" Padding="0">
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="{x:Static resx:Strings.PlaceholderPassword}"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               TextColor="#1F2937"
+                               IsPassword="True"
+                               Padding="12"
+                               ClearButtonVisibility="Never"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- FORGOT PASSWORD LINK -->
+                  <Label Text="{x:Static resx:Strings.ForgotPassword}"
+                       FontSize="13"
+                       TextColor="#6366F1"
+                       FontAttributes="Bold"
+                       HorizontalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnForgotPasswordTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!-- LOGIN BUTTON WITH LOADING INDICATOR -->
+                <Grid ColumnDefinitions="*" HeightRequest="50" Margin="0,10,0,0">
+                        <Button x:Name="LoginButton"
+                            Text="{x:Static resx:Strings.SignIn}"
+                            BackgroundColor="#6366F1"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            Padding="0"
+                            Clicked="OnLoginClicked"/>
+                    <ActivityIndicator x:Name="LoadingIndicator"
+                                       IsRunning="False"
+                                       IsVisible="False"
+                                       Color="White"
+                                       Scale="1.2"/>
+                </Grid>
+
+                <!-- DIVIDER -->
+                <Grid ColumnDefinitions="*,Auto,*" Margin="0,20">
+                    <BoxView Grid.Column="0" Color="#E5E7EB" HeightRequest="1" VerticalOptions="Center"/>
+                    <Label Grid.Column="1" Text="{x:Static resx:Strings.OrLabel}" FontSize="12" TextColor="#9CA3AF" Margin="10,0"/>
+                    <BoxView Grid.Column="2" Color="#E5E7EB" HeightRequest="1" VerticalOptions="Center"/>
+                </Grid>
+
+                <!-- SIGN UP LINK -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="4">
+                          <Label Text="{x:Static resx:Strings.NoAccountPrompt}"
+                           FontSize="13"
+                           TextColor="#6B7280"/>
+                    <Label Text="Sign Up"
+                              FontSize="13"
+                              TextColor="{x:Static resx:Strings.SignUp}"
+                              FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSignUpTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

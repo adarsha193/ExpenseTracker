@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.ProfilePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Profile"
+             BackgroundColor="#F8F9FA">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0" Padding="0">
+            
+            <!-- Loading Indicator Overlay -->
+            <VerticalStackLayout x:Name="LoadingIndicatorProfile"
+                                IsVisible="True"
+                                BackgroundColor="#F8F9FA"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                Padding="20">
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="16">
+                    <ActivityIndicator IsRunning="True"
+                                       Color="#6366F1"
+                                       Scale="1.5"/>
+                    <Label Text="Loading profile..."
+                           FontSize="14"
+                           TextColor="#6B7280"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Content -->
+            <VerticalStackLayout x:Name="ProfileContent" IsVisible="False" Spacing="0" Padding="0">
+            
+            <!-- Header Section with Gradient -->
+            <Grid Padding="0" HeightRequest="200" BackgroundColor="#6366F1">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#6366F1" Offset="0.0"/>
+                        <GradientStop Color="#8B5CF6" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                
+                <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
+                    <!-- Profile Picture -->
+                    <Border StrokeShape="RoundRectangle 60,60,60,60" Stroke="#FFFFFF" StrokeThickness="3" 
+                            Padding="0" BackgroundColor="White" WidthRequest="120" HeightRequest="120" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="👤" FontSize="64" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    
+                    <!-- User Name -->
+                    <Label x:Name="HeaderNameLabel"
+                           Text="Loading..."
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                    
+                    <!-- Email -->
+                    <Label x:Name="HeaderEmailLabel"
+                           Text="Loading..."
+                           FontSize="14"
+                           TextColor="White"
+                           Opacity="0.8"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Content Section -->
+            <VerticalStackLayout Spacing="20" Padding="20">
+                
+                <!-- User Information Section -->
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Personal Information"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    
+                    <!-- Full Name -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Full Name"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="#6B7280"/>
+                           <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 8" BackgroundColor="White" Padding="0">
+                            <Entry x:Name="NameEntry"
+                                Text=""
+                                Placeholder="Enter your full name"
+                                PlaceholderColor="#9CA3AF"
+                                BackgroundColor="Transparent"
+                                TextColor="#1F2937"
+                                Padding="12"
+                                ClearButtonVisibility="Never"/>
+                           </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Email -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Email Address"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="#6B7280"/>
+                           <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 8" BackgroundColor="White" Padding="0">
+                            <Entry x:Name="EmailEntry"
+                                Text=""
+                                Placeholder="Enter your email"
+                                PlaceholderColor="#9CA3AF"
+                                BackgroundColor="Transparent"
+                                TextColor="#1F2937"
+                                Keyboard="Email"
+                                Padding="12"
+                                ClearButtonVisibility="Never"/>
+                           </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Phone Number -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Phone Number"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="#6B7280"/>
+                           <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 8" BackgroundColor="White" Padding="0">
+                            <Entry x:Name="PhoneEntry"
+                                Text=""
+                                Placeholder="Enter your phone number"
+                                PlaceholderColor="#9CA3AF"
+                                BackgroundColor="Transparent"
+                                TextColor="#1F2937"
+                                Keyboard="Telephone"
+                                Padding="12"
+                                ClearButtonVisibility="Never"/>
+                           </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Location -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Location"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="#6B7280"/>
+                           <Border Stroke="#E5E7EB" StrokeThickness="1" StrokeShape="RoundRectangle 8" BackgroundColor="White" Padding="0">
+                            <Entry x:Name="LocationEntry"
+                                Text=""
+                                Placeholder="Enter your location"
+                                PlaceholderColor="#9CA3AF"
+                                BackgroundColor="Transparent"
+                                TextColor="#1F2937"
+                                Padding="12"
+                                ClearButtonVisibility="Never"/>
+                           </Border>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <!-- Account Statistics Section -->
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Account Statistics"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                        <!-- Total Expenses -->
+                        <Frame Grid.Column="0"
+                               BorderColor="#E5E7EB"
+                               CornerRadius="12"
+                               Padding="15"
+                               BackgroundColor="White">
+                            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                <Label Text="Total Expenses"
+                                       FontSize="12"
+                                       TextColor="#6B7280"
+                                       HorizontalOptions="Center"/>
+                                <Label x:Name="TotalExpensesLabel"
+                                       Text="₹0"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#6366F1"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="All Time"
+                                       FontSize="11"
+                                       TextColor="#9CA3AF"
+                                       HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Member Since -->
+                        <Frame Grid.Column="1"
+                               BorderColor="#E5E7EB"
+                               CornerRadius="12"
+                               Padding="15"
+                               BackgroundColor="White">
+                            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                <Label Text="Member Since"
+                                       FontSize="12"
+                                       TextColor="#6B7280"
+                                       HorizontalOptions="Center"/>
+                                <Label x:Name="MemberSinceLabel"
+                                       Text="Loading..."
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#8B5CF6"
+                                       HorizontalOptions="Center"/>
+                                <Label x:Name="MemberDurationLabel"
+                                       Text="Recently Joined"
+                                       FontSize="11"
+                                       TextColor="#9CA3AF"
+                                       HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <!-- Action Buttons -->
+                <VerticalStackLayout Spacing="12">
+                    <!-- Save Changes Button -->
+                    <Button Text="Save Changes"
+                            BackgroundColor="#6366F1"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            Padding="0"
+                            HeightRequest="50"
+                            Clicked="OnSaveClicked"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

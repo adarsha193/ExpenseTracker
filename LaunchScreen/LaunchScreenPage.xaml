@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.LaunchScreenPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Expense Tracker">
+
+    <Grid RowDefinitions="*,Auto" Padding="20">
+        
+        <!-- Gradient Background -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#6366F1" Offset="0.0"/>
+                <GradientStop Color="#8B5CF6" Offset="0.5"/>
+                <GradientStop Color="#A855F7" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        
+        <!-- Content -->
+        <VerticalStackLayout Grid.Row="0" 
+                           Spacing="20"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center">
+            
+            <!-- Image Container with Shadow Effect -->
+            <Frame CornerRadius="20"
+                   HeightRequest="300"
+                   WidthRequest="300"
+                   HorizontalOptions="Center"
+                   Padding="0"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                <Image Source="expense.png" 
+                       Aspect="AspectFill"/>
+            </Frame>
+
+            <!-- Title -->
+            <Label Text="Expense Tracker"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Subtitle -->
+            <Label Text="Track your expenses easily and efficiently"
+                   FontSize="16"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,30"
+                   Opacity="0.9"/>
+        </VerticalStackLayout>
+
+        <!-- Button -->
+        <Button Grid.Row="1"
+                Text="Get Started"
+                BackgroundColor="White"
+                TextColor="#6366F1"
+                FontSize="16"
+                FontAttributes="Bold"
+                CornerRadius="12"
+                Padding="0"
+                HeightRequest="50"
+                Clicked="OnGetStartedClicked"/>
+    </Grid>
+
+</ContentPage>

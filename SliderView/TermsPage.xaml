@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ExpenseTracker.TermsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Terms and Conditions"
+    BackgroundColor="#F5F6FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- HEADER CARD -->
+            <Frame BackgroundColor="#6366F1"
+                   CornerRadius="20"
+                   Padding="25"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Terms and Conditions"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <Label Text="Please read the following carefully before using the app."
+                           FontSize="15"
+                           TextColor="White"
+                           Opacity="0.9"/>
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- TERMS SECTION -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="20">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <!-- Section Title -->
+                    <Label Text="1. Acceptance of Terms"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#444"/>
+
+                    <Label Text="By creating an account or using the ExpenseTracker app, you agree to follow all the terms and conditions listed below."
+                           FontSize="15"
+                           TextColor="#555"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- USAGE RULES -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="20">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="2. Usage Rules"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#444"/>
+
+                    <Label Text="• You must provide accurate account information.
+• You agree not to misuse the app or attempt unauthorized access.
+• You must follow all local laws when using the application."
+                           FontSize="15"
+                           TextColor="#555"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- DATA & PRIVACY -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="20">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="3. Data and Privacy"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#444"/>
+
+                    <Label Text="We respect your privacy. Your data will only be used to improve app performance and provide necessary features."
+                           FontSize="15"
+                           TextColor="#555"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- LIMITATION -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="20">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="4. Limitation of Liability"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#444"/>
+
+                    <Label Text="ExpenseTracker is not responsible for any financial losses or miscalculations caused by incorrect data entered by the user."
+                           FontSize="15"
+                           TextColor="#555"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- AGREEMENT FOOTER -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="18"
+                   HasShadow="True"
+                   Padding="20">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="By continuing to use this app, you agree to abide by these terms and conditions."
+                           FontSize="15"
+                           TextColor="#444"
+                           HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

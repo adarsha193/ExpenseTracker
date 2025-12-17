@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.DashboardPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExpenseTracker"
+             Title="Dashboard"
+             BackgroundColor="#F8F9FA"
+             Shell.NavBarIsVisible="True"
+             Shell.TabBarIsVisible="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ProgressConverter x:Key="ProgressConverter"/>
+            <local:PercentageWidthConverter x:Key="PercentageWidthConverter"/>
+            <local:DataEmptyColorConverter x:Key="DataEmptyColorConverter"/>
+            <local:ZeroToNotSetConverter x:Key="ZeroToNotSetConverter"/>
+            <local:ZeroToSetUpConverter x:Key="ZeroToSetUpConverter"/>
+            <local:EmptyListHeightConverter x:Key="EmptyListHeightConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+
+        <!-- HEADER GRADIENT -->
+        <Grid Grid.Row="0" Padding="0" HeightRequest="240">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6366F1" Offset="0.0"/>
+                    <GradientStop Color="#8B5CF6" Offset="0.5"/>
+                    <GradientStop Color="#A855F7" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <VerticalStackLayout Padding="24,20,24,0"
+                                 Spacing="18"
+                                 VerticalOptions="StartAndExpand">
+
+                <!-- GREETING -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Welcome to ExpenseTracker"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <Label Text="Track your spending wisely"
+                           FontSize="15"
+                           TextColor="White"
+                           Opacity="0.9"/>
+                </VerticalStackLayout>
+
+                <!-- TOTAL SPENT CARD -->
+                <Frame BackgroundColor="White"
+                       BorderColor="Transparent"
+                       CornerRadius="18"
+                       Padding="0"
+                       HasShadow="True"
+                       Margin="0,4,0,0"
+                       HeightRequest="110">
+
+                    <Grid ColumnDefinitions="*,70" Padding="16" ColumnSpacing="12">
+
+                        <VerticalStackLayout Grid.Column="0"
+                                             Spacing="6"
+                                             VerticalOptions="Center">
+
+                            <Label Text="Total Spent"
+                                   FontSize="11"
+                                   TextColor="#9CA3AF"
+                                   FontAttributes="Bold"/>
+
+                            <Label Text="{Binding TotalSpent, StringFormat='₹{0:F2}'}"
+                                   FontSize="26"
+                                   FontAttributes="Bold"
+                                   TextColor="#6366F1"/>
+
+                            <Label Text="All time total"
+                                   FontSize="9"
+                                   TextColor="#D1D5DB"/>
+                        </VerticalStackLayout>
+
+                        <Frame Grid.Column="1"
+                               BackgroundColor="#EEF2FF"
+                               BorderColor="Transparent"
+                               CornerRadius="14"
+                               Padding="8"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center">
+
+                            <Label Text="💰"
+                                   FontSize="26"/>
+                        </Frame>
+
+                    </Grid>
+                </Frame>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- CONTENT AREA -->
+        <Grid Grid.Row="1" RowDefinitions="*">
+            <!-- Loading Indicator -->
+            <VerticalStackLayout x:Name="LoadingIndicator"
+                                BackgroundColor="#F8F9FA"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Spacing="16">
+                <ActivityIndicator IsRunning="True"
+                                   Color="#6366F1"
+                                   Scale="1.5"/>
+                <Label Text="Loading expenses..."
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <!-- Empty State -->
+            <VerticalStackLayout x:Name="EmptyStateIndicator"
+                                IsVisible="False"
+                                BackgroundColor="#F8F9FA"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Spacing="16"
+                                Padding="40">
+                <Label Text="📊"
+                       FontSize="64"
+                       HorizontalOptions="Center"/>
+                <Label Text="No Expenses Yet"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="#1F2937"
+                       HorizontalOptions="Center"/>
+                <Label Text="Start tracking your spending by adding your first expense"
+                       FontSize="14"
+                       TextColor="#6B7280"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+
+            <!-- Content -->
+            <ScrollView BackgroundColor="#F8F9FA">
+                <VerticalStackLayout Padding="20,24" Spacing="28">
+
+                    <!-- OVERVIEW CARDS SECTION -->
+                    <VerticalStackLayout x:Name="FinancialOverviewSection" Spacing="8" IsVisible="True">
+                        <Label Text="Financial Overview"
+                               FontSize="19"
+                               FontAttributes="Bold"
+                               TextColor="#1F2937"
+                               Margin="4,0,0,0"/>
+
+                        <!-- 2x2 Card Grid -->
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+
+                            <!-- Salary Card -->
+                            <Frame Grid.Row="0" Grid.Column="0"
+                                   BackgroundColor="White"
+                                   BorderColor="#E5E7EB"
+                                   CornerRadius="14"
+                                   Padding="14"
+                                   HasShadow="False"
+                                   BorderWidth="1">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="💵" FontSize="22" VerticalOptions="Start"/>
+                                    <Label Text="Your Salary" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                    <Label Text="{Binding MonthlySalary, Converter={StaticResource ZeroToNotSetConverter}}" 
+                                           FontSize="18" FontAttributes="Bold" TextColor="{Binding MonthlySalary, Converter={StaticResource DataEmptyColorConverter}}"/>
+                                    <Label Text="Monthly" FontSize="10" TextColor="#D1D5DB"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Investment Card -->
+                            <Frame Grid.Row="0" Grid.Column="1"
+                                   BackgroundColor="White"
+                                   BorderColor="#E5E7EB"
+                                   CornerRadius="14"
+                                   Padding="14"
+                                   HasShadow="False"
+                                   BorderWidth="1">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="💹" FontSize="22" VerticalOptions="Start"/>
+                                    <Label Text="Your Investments" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                    <Label Text="{Binding TotalInvestments, Converter={StaticResource ZeroToNotSetConverter}}" 
+                                           FontSize="18" FontAttributes="Bold" TextColor="{Binding TotalInvestments, Converter={StaticResource DataEmptyColorConverter}}"/>
+                                    <Label Text="Portfolio" FontSize="10" TextColor="#D1D5DB"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Budget Progress Card -->
+                            <Frame Grid.Row="1" Grid.Column="0"
+                                   BackgroundColor="White"
+                                   BorderColor="#E5E7EB"
+                                   CornerRadius="14"
+                                   Padding="14"
+                                   HasShadow="False"
+                                   BorderWidth="1">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="💳" FontSize="22" VerticalOptions="Start"/>
+                                    <Label Text="Budget Progress" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                    <Label Text="{Binding BudgetProgressPercentage, Converter={StaticResource ZeroToSetUpConverter}}" 
+                                           FontSize="18" FontAttributes="Bold" TextColor="{Binding BudgetProgressPercentage, Converter={StaticResource DataEmptyColorConverter}}"/>
+                                    <Label Text="Used this month" FontSize="10" TextColor="#D1D5DB"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Savings Rate Card -->
+                            <Frame Grid.Row="1" Grid.Column="1"
+                                   BackgroundColor="White"
+                                   BorderColor="#E5E7EB"
+                                   CornerRadius="14"
+                                   Padding="14"
+                                   HasShadow="False"
+                                   BorderWidth="1">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="📈" FontSize="22" VerticalOptions="Start"/>
+                                    <Label Text="Savings Rate" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
+                                    <Label Text="{Binding SavingsRate, Converter={StaticResource ZeroToSetUpConverter}}" 
+                                           FontSize="18" FontAttributes="Bold" TextColor="{Binding SavingsRate, Converter={StaticResource DataEmptyColorConverter}}"/>
+                                    <Label Text="Of income" FontSize="10" TextColor="#D1D5DB"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                        </Grid>
+
+                        <!-- Setup Guide for New Users (appears when no data) -->
+                        <Border x:Name="SetupGuideBox"
+                                Stroke="#FF8C00"
+                                StrokeThickness="2"
+                                CornerRadius="16"
+                                BackgroundColor="White"
+                                Padding="0"
+                                Margin="0,16,0,0"
+                                IsVisible="False">
+                            <VerticalStackLayout Spacing="0">
+                                <!-- Header -->
+                                <Grid BackgroundColor="#FF8C00" Padding="16" CornerRadius="14,14,0,0">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="Quick Setup"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="White"/>
+                                        <Label Text="Get your finances up and running in 4 steps"
+                                               FontSize="12"
+                                               TextColor="#FFE4CC"
+                                               FontAttributes="Bold"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!-- Steps -->
+                                <VerticalStackLayout Spacing="0" Padding="16">
+                                    <!-- Step 1 -->
+                                    <HorizontalStackLayout Spacing="12" Padding="0,12">
+                                        <Frame BackgroundColor="#E8F5E9" BorderColor="Transparent" CornerRadius="10" Padding="10" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start">
+                                            <Label Text="💰" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                            <Label Text="Add Your Salary" FontSize="13" FontAttributes="Bold" TextColor="#1F2937"/>
+                                            <Label Text="Set up your monthly income" FontSize="11" TextColor="#9CA3AF"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+
+                                    <!-- Divider -->
+                                    <BoxView Color="#E5E7EB" HeightRequest="1" Margin="52,8,0,8"/>
+
+                                    <!-- Step 2 -->
+                                    <HorizontalStackLayout Spacing="12" Padding="0,12">
+                                        <Frame BackgroundColor="#E3F2FD" BorderColor="Transparent" CornerRadius="10" Padding="10" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start">
+                                            <Label Text="📈" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                            <Label Text="Track Investments" FontSize="13" FontAttributes="Bold" TextColor="#1F2937"/>
+                                            <Label Text="Monitor your investment portfolio" FontSize="11" TextColor="#9CA3AF"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+
+                                    <!-- Divider -->
+                                    <BoxView Color="#E5E7EB" HeightRequest="1" Margin="52,8,0,8"/>
+
+                                    <!-- Step 3 -->
+                                    <HorizontalStackLayout Spacing="12" Padding="0,12">
+                                        <Frame BackgroundColor="#F3E5F5" BorderColor="Transparent" CornerRadius="10" Padding="10" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start">
+                                            <Label Text="💳" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                            <Label Text="Create a Budget" FontSize="13" FontAttributes="Bold" TextColor="#1F2937"/>
+                                            <Label Text="Set monthly spending limits by category" FontSize="11" TextColor="#9CA3AF"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+
+                                    <!-- Divider -->
+                                    <BoxView Color="#E5E7EB" HeightRequest="1" Margin="52,8,0,8"/>
+
+                                    <!-- Step 4 -->
+                                    <HorizontalStackLayout Spacing="12" Padding="0,12">
+                                        <Frame BackgroundColor="#FFF3E0" BorderColor="Transparent" CornerRadius="10" Padding="10" WidthRequest="40" HeightRequest="40" HorizontalOptions="Start">
+                                            <Label Text="🛒" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+                                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                            <Label Text="Log Your First Expense" FontSize="13" FontAttributes="Bold" TextColor="#1F2937"/>
+                                            <Label Text="Start tracking your spending today" FontSize="11" TextColor="#9CA3AF"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- CATEGORY BREAKDOWN SECTION -->
+                    <VerticalStackLayout x:Name="SpendingByCategorySection" Spacing="8" IsVisible="True">
+
+                    <Label Text="Spending by Category"
+                           FontSize="19"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"
+                           Margin="4,0,0,0"/>
+
+                    <!-- BAR CHART CARD -->
+                    <Frame BackgroundColor="White"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="16"
+                           Padding="12"
+                           HasShadow="False"
+                           BorderWidth="1">
+
+                        <VerticalStackLayout Spacing="10">
+
+                            <GraphicsView x:Name="BarChartCanvas"
+                                          WidthRequest="320"
+                                          HeightRequest="150"
+                                          HorizontalOptions="Fill"/>
+
+                            <!-- CATEGORY LEGEND -->
+                            <CollectionView ItemsSource="{Binding CategoryBreakdown}"
+                                            SelectionMode="None"
+                                            EmptyView="No spending data yet">
+
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical"
+                                                       ItemSpacing="6"/>
+                                </CollectionView.ItemsLayout>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <HorizontalStackLayout Spacing="10"
+                                                               Padding="0,2">
+
+                                            <BoxView WidthRequest="12"
+                                                     HeightRequest="12"
+                                                     CornerRadius="6"
+                                                     BackgroundColor="{Binding ProgressColor}"
+                                                     VerticalOptions="Center"/>
+
+                                            <Label Text="{Binding Category}"
+                                                   FontSize="13"
+                                                   TextColor="#1F2937"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"/>
+
+                                            <Label Text="{Binding Percentage, StringFormat='{0:F1}%'}"
+                                                   FontSize="13"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#6366F1"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="EndAndExpand"/>
+
+                                        </HorizontalStackLayout>
+
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- RECENT EXPENSES SECTION -->
+                <VerticalStackLayout Spacing="10" Margin="0,-10,0,0">
+
+                    <HorizontalStackLayout Spacing="0"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Fill">
+
+                        <Label Text="Recent Transactions"
+                               FontSize="19"
+                               FontAttributes="Bold"
+                               TextColor="#1F2937"
+                               Margin="4,0,0,0"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"/>
+
+                        <Button Text="View All"
+                                BackgroundColor="Transparent"
+                                TextColor="#6366F1"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                Padding="12,4"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Clicked="OnViewAllExpensesClicked"/>
+
+                    </HorizontalStackLayout>
+
+                    <!-- HORIZONTAL EXPENSE LIST OR EMPTY STATE -->
+                    <VerticalStackLayout x:Name="RecentTransactionsContainer" Spacing="8">
+                        <CollectionView ItemsSource="{Binding RecentExpenses}"
+                SelectionMode="None"
+                HeightRequest="190">
+
+
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal"
+                                                   ItemSpacing="12"
+                                                   ScrollHorizontalItemSpacing="0"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Frame BackgroundColor="White"
+                                           BorderColor="#E5E7EB"
+                                           CornerRadius="16"
+                                           Padding="0"
+                                           HasShadow="False"
+                                           BorderWidth="1"
+                                           WidthRequest="280"
+                                           HeightRequest="150"
+                                           Margin="0,0,0,10">
+
+                                        <VerticalStackLayout Spacing="10" Padding="14">
+
+                                        <!-- Header -->
+                                        <HorizontalStackLayout Spacing="10">
+
+                                            <Frame BackgroundColor="#FEF08A"
+                                                   BorderColor="Transparent"
+                                                   CornerRadius="12"
+                                                   Padding="8"
+                                                   WidthRequest="44"
+                                                   HeightRequest="44"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start">
+
+                                                <Label Text="{Binding Icon}"
+                                                       FontSize="22"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"/>
+                                            </Frame>
+
+                                            <VerticalStackLayout Spacing="2"
+                                                                 VerticalOptions="Start"
+                                                                 HorizontalOptions="FillAndExpand">
+
+                                                <Label Text="{Binding Category}"
+                                                       FontSize="13"
+                                                       FontAttributes="Bold"
+                                                       TextColor="#1F2937"/>
+
+                                                <Label Text="{Binding Date}"
+                                                       FontSize="10"
+                                                       TextColor="#9CA3AF"/>
+                                            </VerticalStackLayout>
+
+                                        </HorizontalStackLayout>
+
+                                        <!-- Amount -->
+                                        <Label Text="{Binding Amount, StringFormat='₹{0:F2}'}"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               TextColor="#EF4444"/>
+
+                                        <!-- Description -->
+                                        <Label Text="{Binding Description}"
+                                               FontSize="11"
+                                               TextColor="#6B7280"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="1"/>
+
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+                        <!-- Empty State for Recent Transactions -->
+                        <VerticalStackLayout x:Name="RecentTransactionsEmptyState"
+                                            IsVisible="True"
+                                            HorizontalOptions="Fill"
+                                            VerticalOptions="Center"
+                                            Padding="20,8,20,8"
+                                            Spacing="8"
+                                            HeightRequest="Auto">
+                            <Label Text="💳"
+                                   FontSize="32"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="No transactions yet"
+                                   FontSize="13"
+                                   TextColor="#6B7280"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   FontAttributes="Bold"/>
+                            <Label Text="Your recent expenses will appear here"
+                                   FontSize="11"
+                                   TextColor="#9CA3AF"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <!-- ACTION BUTTONS -->
+                <VerticalStackLayout Spacing="12" Margin="0,8,0,20">
+
+                    <Button Text="+ Add New Expense"
+                            BackgroundColor="#6366F1"
+                            TextColor="White"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            CornerRadius="14"
+                            HeightRequest="56"
+                            Padding="0"
+                            Clicked="OnAddExpenseClicked"
+                            BorderWidth="0"/>
+
+                    <Button Text="View All Expenses"
+                            BackgroundColor="White"
+                            TextColor="#6366F1"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            CornerRadius="14"
+                            HeightRequest="56"
+                            BorderColor="#6366F1"
+                            BorderWidth="2"
+                            Padding="0"
+                            Clicked="OnViewAllExpensesClicked"/>
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+            </ScrollView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

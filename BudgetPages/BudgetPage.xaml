@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExpenseTracker.BudgetPages"
+             x:Class="ExpenseTracker.BudgetPages.BudgetPage"
+             Title="Monthly Budget"
+             BackgroundColor="#F5F5F5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ProgressConverter x:Key="ProgressConverter" />
+            <local:ExceededColorConverter x:Key="ExceededColorConverter" />
+            <local:PercentageColorConverter x:Key="PercentageColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        <!-- Header -->
+        <Grid BackgroundColor="#9C27B0" Padding="20,10">
+            <VerticalStackLayout>
+                <Label Text="💳 Monthly Budget"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                <Label x:Name="MonthYearLabel"
+                       Text=""
+                       FontSize="12"
+                       TextColor="#E1BEE7"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" RowDefinitions="Auto,Auto,*">
+            
+            <!-- Budget Summary -->
+           <Border Grid.Row="0"
+        Stroke="#E0E0E0"
+        StrokeThickness="1"
+        CornerRadius="12"
+        Padding="20"
+        Margin="20,20,20,10"
+        BackgroundColor="White">
+
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+
+        <!-- TOTAL BUDGET -->
+        <VerticalStackLayout Spacing="4">
+            <Label Text="Total Budget"
+                   FontSize="11"
+                   TextColor="#999"
+                   FontAttributes="Bold"/>
+
+            <Label x:Name="TotalBudgetLabel"
+                   Text="₹0.00"
+                   FontSize="22"
+                   TextColor="#9C27B0"
+                   FontAttributes="Bold"/>
+        </VerticalStackLayout>
+
+        <!-- TOTAL SPENT -->
+        <VerticalStackLayout Grid.Column="1"
+                             Spacing="4"
+                             HorizontalOptions="End">
+            <Label Text="Total Spent"
+                   FontSize="11"
+                   TextColor="#999"
+                   FontAttributes="Bold"/>
+
+            <Label x:Name="TotalSpentLabel"
+                   Text="₹0.00"
+                   FontSize="22"
+                   TextColor="#FF5252"
+                   FontAttributes="Bold"/>
+        </VerticalStackLayout>
+
+    </Grid>
+</Border>
+
+
+            <!-- Budget Alert Summary (if any exceeded) -->
+            <Border Grid.Row="1"
+                    x:Name="AlertSummaryBox"
+                    Stroke="#FF5252"
+                    StrokeThickness="2"
+                    CornerRadius="12"
+                    Padding="15"
+                    Margin="20,10"
+                    BackgroundColor="#FFEBEE"
+                    IsVisible="False">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="🚨 Budget Alerts"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#FF5252"/>
+                    <Label x:Name="AlertSummaryLabel"
+                           Text=""
+                           FontSize="12"
+                           TextColor="#C62828"
+                           LineBreakMode="WordWrap"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Budget Categories -->
+            <Grid Grid.Row="2" RowDefinitions="Auto,*">
+                
+                <!-- Add Button -->
+                <Button Grid.Row="0"
+                        Text="➕ Add Category Budget"
+                        BackgroundColor="#9C27B0"
+                        TextColor="White"
+                        Padding="20"
+                        Margin="20,10"
+                        FontAttributes="Bold"
+                        Clicked="OnAddCategoryClicked"/>
+
+                <!-- Loading Indicator -->
+                <ActivityIndicator Grid.Row="1"
+                                   x:Name="LoadingIndicator"
+                                   IsRunning="False"
+                                   IsVisible="False"
+                                   Color="#9C27B0"
+                                   VerticalOptions="Center"/>
+
+                <!-- Budget Categories CollectionView -->
+                <CollectionView Grid.Row="1"
+                                x:Name="BudgetsCollectionView"
+                                ItemsSource="{Binding Budgets}"
+                                Margin="20,10,20,20"
+                                VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="#E0E0E0" StrokeThickness="1" CornerRadius="12" Padding="15" Margin="0,8" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- Category and Budget -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0"
+                                               Text="{Binding Category}"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               TextColor="#333"/>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding AllocatedAmount, StringFormat='₹{0:N2}'}"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               TextColor="#9C27B0"/>
+                                    </Grid>
+
+                                    <!-- Progress Bar -->
+                                    <ProgressBar x:Name="BudgetProgress"
+                                                 Progress="{Binding SpendingPercentage, Converter={StaticResource ProgressConverter}}"
+                                                 ProgressColor="{Binding IsExceeded, Converter={StaticResource ExceededColorConverter}}"
+                                                 BackgroundColor="#E1BEE7"
+                                                 CornerRadius="4"
+                                                 HeightRequest="8"/>
+
+                                    <!-- Spending Info -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0"
+                                               x:Name="SpendingLabel"
+                                               Text="{Binding CurrentSpending, StringFormat='Spent: ₹{0:N2}'}"
+                                               FontSize="12"
+                                               TextColor="#666"/>
+                                        <Label Grid.Column="1"
+                                               x:Name="PercentageLabel"
+                                               Text="{Binding SpendingPercentage, StringFormat='{0:P0}'}"
+                                               FontSize="12"
+                                               TextColor="#999"/>
+                                    </Grid>
+
+                                    <!-- Alert Badge (if exceeded) -->
+                                    <Label x:Name="AlertLabel"
+                                           Text="{Binding AlertMessage}"
+                                           FontSize="11"
+                                           TextColor="#FF5252"
+                                           IsVisible="{Binding IsExceeded}"
+                                           FontAttributes="Bold"
+                                           Margin="0,5,0,0"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Empty State -->
+                <Border Grid.Row="1"
+                        x:Name="EmptyStateIndicator"
+                        Stroke="#DDD"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12,12,12,12"
+                        Padding="30"
+                        Margin="20"
+                        BackgroundColor="#FAFAFA"
+                        IsVisible="False">
+                    <VerticalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="💰"
+                               FontSize="48"
+                               HorizontalOptions="Center"/>
+                        <Label Text="No Budget Set"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#333"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="Create a budget to track your spending"
+                               FontSize="14"
+                               TextColor="#999"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

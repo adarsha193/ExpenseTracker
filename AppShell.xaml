@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ExpenseTracker.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ExpenseTracker"
+    Title="ExpenseTracker"
+    FlyoutBehavior="Disabled"
+    TabBarBackgroundColor="#FFFFFF"
+    TabBarForegroundColor="#6366F1">
+
+    <!-- Shell Styling -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#6366F1</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Launch Screen (Login) - No Hamburger Menu -->
+    <ShellContent
+        Title="Launch"
+        ContentTemplate="{DataTemplate local:LaunchScreenPage}"
+        Route="LaunchScreenPage" />
+
+    <!-- Login Route -->
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="login" />
+
+    <!-- Forgot Password Route -->
+    <ShellContent
+        Title="Forgot Password"
+        ContentTemplate="{DataTemplate local:ForgotPasswordPage}"
+        Route="forgotpassword" />
+
+    <!-- Sign Up Route -->
+    <ShellContent
+        Title="Sign Up"
+        ContentTemplate="{DataTemplate local:SignUpPage}"
+        Route="signup" />
+
+</Shell>
+
+
+

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.AddExpensePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Add Expense"
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        
+        <!-- HEADER -->
+        <Grid Grid.Row="0" Padding="0" HeightRequest="120">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6366F1" Offset="0.0"/>
+                    <GradientStop Color="#8B5CF6" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            
+            <VerticalStackLayout Padding="20" Spacing="10" VerticalOptions="Center">
+                <Label Text="Add New Expense"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                <Label Text="Track your spending"
+                       FontSize="14"
+                       TextColor="White"
+                       Opacity="0.8"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- FORM CONTENT -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="15">
+
+                <!-- CATEGORY SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Category"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Picker x:Name="CategoryPicker"
+                            Title="Select Category"
+                            BackgroundColor="White"
+                            TextColor="#1F2937"
+                            BorderColor="#E5E7EB"
+                            CornerRadius="8">
+                        <Picker.Items>
+                            <x:String>Food</x:String>
+                            <x:String>Travel</x:String>
+                            <x:String>Shopping</x:String>
+                            <x:String>Bills</x:String>
+                            <x:String>Entertainment</x:String>
+                            <x:String>Healthcare</x:String>
+                            <x:String>Education</x:String>
+                            <x:String>Other</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+
+                <!-- AMOUNT SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Amount (₹)"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Entry x:Name="AmountEntry"
+                           Placeholder="Enter amount"
+                           PlaceholderColor="#9CA3AF"
+                           BackgroundColor="White"
+                           TextColor="#1F2937"
+                           Keyboard="Numeric"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="8"
+                           Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- DESCRIPTION SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Description"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Editor x:Name="DescriptionEditor"
+                            Placeholder="Enter description (optional)"
+                            PlaceholderColor="#9CA3AF"
+                            BackgroundColor="White"
+                            TextColor="#1F2937"
+                            BorderColor="#E5E7EB"
+                            CornerRadius="8"
+                            Padding="12"
+                            HeightRequest="100"/>
+                </VerticalStackLayout>
+
+                <!-- SHOP NAME SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Shop Name"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Entry x:Name="ShopNameEntry"
+                           Placeholder="Enter shop name (optional)"
+                           PlaceholderColor="#9CA3AF"
+                           BackgroundColor="White"
+                           TextColor="#1F2937"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="8"
+                           Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- ADDRESS SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Address"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Entry x:Name="AddressEntry"
+                           Placeholder="Enter address (optional)"
+                           PlaceholderColor="#9CA3AF"
+                           BackgroundColor="White"
+                           TextColor="#1F2937"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="8"
+                           Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- LOCATION SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Location"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <Entry x:Name="LocationEntry"
+                           Placeholder="Enter location (optional)"
+                           PlaceholderColor="#9CA3AF"
+                           BackgroundColor="White"
+                           TextColor="#1F2937"
+                           BorderColor="#E5E7EB"
+                           CornerRadius="8"
+                           Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- DATE SECTION -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Date"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#1F2937"/>
+                    <DatePicker x:Name="DatePicker"
+                                BackgroundColor="White"
+                                TextColor="#1F2937"
+                                Date="{Binding Source={x:Static System:DateTime.Today}}"
+                                BorderColor="#E5E7EB"
+                                CornerRadius="8"/>
+                </VerticalStackLayout>
+
+                <!-- BUTTONS -->
+                <VerticalStackLayout Spacing="12" Margin="0,30,0,20">
+                    <Button x:Name="SaveButton"
+                            Text="Save Expense"
+                            BackgroundColor="#6366F1"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="12"
+                            HeightRequest="50"
+                            Padding="0"
+                            Clicked="OnSaveExpenseClicked"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

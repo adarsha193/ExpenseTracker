@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpenseTracker.InvestmentPages.InvestmentPage"
+             Title="Investment Tracking"
+             BackgroundColor="#F5F5F5">
+
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        <!-- Header -->
+        <Grid BackgroundColor="#FF9800" Padding="20,10">
+            <Label Text="📈 Investment Tracking"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" RowDefinitions="Auto,*">
+            
+            <!-- Portfolio Summary -->
+            <Border Grid.Row="0" Stroke="#E0E0E0" StrokeThickness="1" CornerRadius="12" Padding="20" Margin="20,20,20,10" BackgroundColor="White">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Total Portfolio Value" FontAttributes="Bold" FontSize="14" TextColor="#666"/>
+                    <Label x:Name="TotalInvestmentLabel" Text="₹0.00" FontSize="24" TextColor="#FF9800" FontAttributes="Bold"/>
+                    <Label x:Name="InvestmentCountLabel" Text="0 investments" FontSize="12" TextColor="#999"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Investments List -->
+            <Grid Grid.Row="1" RowDefinitions="Auto,*" Padding="0">
+                
+                <!-- Add Button -->
+                <Button Grid.Row="0"
+                        Text="➕ Add Investment"
+                        BackgroundColor="#FF9800"
+                        TextColor="White"
+                        Padding="20"
+                        Margin="20,10"
+                        FontAttributes="Bold"
+                        Clicked="OnAddInvestmentClicked"/>
+
+                <!-- Loading Indicator -->
+                <ActivityIndicator Grid.Row="1"
+                                   x:Name="LoadingIndicator"
+                                   IsRunning="False"
+                                   IsVisible="False"
+                                   Color="#FF9800"
+                                   VerticalOptions="Center"/>
+
+                <!-- Investments CollectionView -->
+                <CollectionView Grid.Row="1"
+                                x:Name="InvestmentsCollectionView"
+                                SelectionMode="Single"
+                                SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                                SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+                                Margin="20,10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="#E0E0E0" StrokeThickness="1" CornerRadius="12" Padding="15" Margin="0,8" BackgroundColor="White">
+                                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10">
+                                    <!-- Type and Amount -->
+                                    <Label Grid.Column="0" Grid.Row="0"
+                                           Text="{Binding InvestmentType}"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="#333"/>
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding Amount, StringFormat='₹{0:N2}'}"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="#FF9800"/>
+
+                                    <!-- Return Rate -->
+                                    <Label Grid.Column="0" Grid.Row="1"
+                                           Text="{Binding ReturnRate, StringFormat='Return Rate: {0:F2}%'}"
+                                           FontSize="12"
+                                           TextColor="#666"
+                                           Margin="0,5,0,0"/>
+                                    <Label Grid.Column="1" Grid.Row="1"
+                                           Text="{Binding InvestmentDate, StringFormat='{0:d MMM yyyy}'}"
+                                           FontSize="12"
+                                           TextColor="#999"
+                                           HorizontalTextAlignment="End"/>
+
+                                    <!-- Description -->
+                                    <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
+                                           Text="{Binding Description}"
+                                           FontSize="12"
+                                           TextColor="#777"
+                                           LineBreakMode="TailTruncation"
+                                           Margin="0,5,0,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Empty State -->
+                <Border Grid.Row="1"
+                        x:Name="EmptyStateIndicator"
+                        Stroke="#DDD"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12,12,12,12"
+                        Padding="30"
+                        Margin="20"
+                        BackgroundColor="#FAFAFA">
+                    <VerticalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="📊"
+                               FontSize="48"
+                               HorizontalOptions="Center"/>
+                        <Label Text="No Investments Yet"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#333"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="Start tracking your investments to build your portfolio"
+                               FontSize="14"
+                               TextColor="#999"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

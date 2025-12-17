@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ExpenseTracker.AboutAppPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="AboutAppPage">
+
+              <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Gradient Header -->
+            <Frame HasShadow="True"
+                   CornerRadius="25"
+                   Padding="30"
+                   HeightRequest="240">
+
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#6366F1" Offset="0.0" />
+                        <GradientStop Color="#8B5CF6" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+                <VerticalStackLayout Spacing="10"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+
+                    <!-- App Icon -->
+                    <Image Source="addexpense.png"
+                           WidthRequest="80"
+                           HeightRequest="80"
+                           Aspect="AspectFit" />
+
+                    <!-- Title -->
+                    <Label Text="Expense Tracker"
+                           FontSize="32"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                    <!-- Subtitle -->
+                    <Label Text="Simple • Modern • Smart"
+                           FontSize="16"
+                           TextColor="#E0E0E0"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- About Text -->
+            <Frame BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}"
+                   CornerRadius="20"
+                   Padding="20"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="About the App"
+                           FontAttributes="Bold"
+                           FontSize="22"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="Expense Tracker helps you record, analyze, and control your daily spending with ease. Designed with a clean UI, smart categorization, and insightful analytics to improve your financial habits."
+                           FontSize="16"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Features Section -->
+            <VerticalStackLayout Spacing="15">
+                <Label Text="Key Features"
+                       FontSize="22"
+                       FontAttributes="Bold" />
+
+                <!-- Feature List -->
+                <Frame Style="{StaticResource AboutFeatureCard}">
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="add_icon.png" WidthRequest="28" />
+                        <Label Text="Add and manage expenses easily"
+                               FontSize="16" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource AboutFeatureCard}">
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="category_icon.png" WidthRequest="28" />
+                        <Label Text="Smart category-wise tracking"
+                               FontSize="16" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource AboutFeatureCard}">
+                    <HorizontalStackLayout Spacing="15">
+                        <Image Source="chart_icon.png" WidthRequest="28" />
+                        <Label Text="Insights and monthly reports"
+                               FontSize="16" />
+                    </HorizontalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+            <!-- Footer -->
+            <Label Text="Version 1.0.0"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   Margin="0,20" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

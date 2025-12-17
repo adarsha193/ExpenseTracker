@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ExpenseTracker.DashboardShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ExpenseTracker"
+    xmlns:salary="clr-namespace:ExpenseTracker.SalaryPages"
+    xmlns:investment="clr-namespace:ExpenseTracker.InvestmentPages"
+    xmlns:budget="clr-namespace:ExpenseTracker.BudgetPages"
+    Title="ExpenseTracker"
+    FlyoutBehavior="Flyout"
+    TabBarBackgroundColor="#FFFFFF"
+    TabBarForegroundColor="#6366F1">
+
+    <!-- Shell Styling -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#6366F1</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Flyout Header -->
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="#6366F1" Padding="0" HeightRequest="200">
+                <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
+                    <Border StrokeShape="RoundRectangle 50,50,50,50"
+                            Stroke="#FFFFFF"
+                            StrokeThickness="2"
+                            Padding="0"
+                            BackgroundColor="White"
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                        <Label Text="👤"
+                               FontSize="48"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+                    <Label Text="{Binding UserName}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding UserEmail}"
+                           FontSize="13"
+                           TextColor="White"
+                           Opacity="0.8"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <!-- Main section: Flyout + TabBar -->
+    <FlyoutItem Title="Dashboard" Route="dashboard">
+        <Tab Title="Dashboard" Icon="dashboard.png">
+            <ShellContent
+                Title="Dashboard"
+                ContentTemplate="{DataTemplate local:DashboardPage}"
+                Route="dashboardpage" />
+        </Tab>
+
+        <Tab Title="Expenses" Icon="viewicon.png">
+            <ShellContent
+                Title="Expenses"
+                ContentTemplate="{DataTemplate local:ViewAllExpensesPage}"
+                Route="viewallexpenses" />
+        </Tab>
+
+        <Tab Title="Add Expense" Icon="addicon.png">
+            <ShellContent
+                Title="Add Expense"
+                ContentTemplate="{DataTemplate local:AddExpensePage}"
+                Route="addexpense" />
+        </Tab>
+        <Tab Title="Budget" Icon="budget.png">
+            <ShellContent
+                Title="Budget"
+                ContentTemplate="{DataTemplate budget:BudgetPage}"
+                Route="budgetpage" />
+        </Tab>
+    </FlyoutItem>
+
+    <!-- Extra flyout pages (no bottom tabs) -->
+    <FlyoutItem Title="Profile" Route="profile">
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:ProfilePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings" Route="settings">
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate local:SettingsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Help" Route="help">
+        <ShellContent
+            Title="Help"
+            ContentTemplate="{DataTemplate local:HelpPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Salary" Route="salary">
+        <ShellContent
+            Title="Salary Management"
+            ContentTemplate="{DataTemplate salary:SalaryPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Investments" Route="investments">
+        <ShellContent
+            Title="Investment Tracking"
+            ContentTemplate="{DataTemplate investment:InvestmentPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Budget" Route="budget">
+        <ShellContent
+            Title="Monthly Budget"
+            ContentTemplate="{DataTemplate budget:BudgetPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Terms and Conditions" Route="termsandconditions">
+        <ShellContent
+            Title="Terms and Conditions"
+            ContentTemplate="{DataTemplate local:TermsPage}" />
+    </FlyoutItem>
+
+    <!-- Logout menu item -->
+    <MenuItem Text="Logout" Clicked="OnLogoutClicked" />
+
+</Shell>
