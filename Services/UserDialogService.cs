@@ -3,6 +3,27 @@ using Microsoft.Maui.ApplicationModel;
 
 namespace ExpenseTracker.Services
 {
+    /// <summary>
+    /// User Dialog Service - UI Alerts & Confirmations Feature
+    /// 
+    /// FEATURES:
+    /// - Displays alert dialogs to the user
+    /// - Shows confirmation dialogs with Yes/No options
+    /// - Thread-safe execution on main UI thread
+    /// - Centralized UI interaction for consistent UX
+    /// 
+    /// USAGE:
+    /// - Display error messages
+    /// - Show success confirmations
+    /// - Request user confirmation for actions
+    /// - Display warnings and information messages
+    /// 
+    /// IMPLEMENTATION:
+    /// - Uses MAUI MainPage.DisplayAlert() for alerts and confirmations
+    /// - All calls executed on main thread for thread safety
+    /// - Graceful error handling if MainPage is not available
+    /// - Works across all platforms (iOS, Android, macOS, Windows)
+    /// </summary>
     public class UserDialogService : IUserDialogService
     {
         public async Task ShowAlertAsync(string title, string message, string cancel = "OK")

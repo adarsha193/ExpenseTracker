@@ -9,6 +9,29 @@ using Foundation;
 
 namespace ExpenseTracker;
 
+/// <summary>
+/// Login Page - User Authentication Feature
+/// 
+/// FEATURES:
+/// - Email and password authentication via Firebase
+/// - "Forgot Password" link for password recovery
+/// - "Register" link for new user signup
+/// - Platform-specific password field handling (iOS autofill suppression)
+/// - Error messaging and loading state indicators
+/// - Secure credential handling
+/// 
+/// FLOW:
+/// 1. User enters email and password
+/// 2. OnLoginClicked validates input
+/// 3. Calls FirebaseRealtimeDbService.LoginAsync()
+/// 4. On success: Navigate to DashboardPage
+/// 5. On failure: Display error message
+/// 
+/// SECURITY:
+/// - Passwords never logged or stored locally
+/// - Auth token stored in SecureStorage
+/// - HTTPS only communication with Firebase
+/// </summary>
 public partial class LoginPage : ContentPage
 {
     private readonly FirebaseRealtimeDbService _authService;

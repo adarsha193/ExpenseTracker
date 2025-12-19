@@ -3,7 +3,30 @@ using ExpenseTracker.Models;
 namespace ExpenseTracker.Services
 {
     /// <summary>
-    /// AI-based service for providing budget and spending recommendations
+    /// AI Suggestions Service - Smart Financial Recommendations Feature
+    /// 
+    /// FEATURES:
+    /// - Generates personalized budget recommendations based on spending patterns
+    /// - Analyzes last 3 months of expense data to identify trends
+    /// - Calculates savings rate and provides improvement suggestions
+    /// - Identifies overspending categories and suggests budget adjustments
+    /// - Detects underspent categories for reallocation opportunities
+    /// 
+    /// SUGGESTION TYPES:
+    /// - IncreaseCategory: User overspends regularly, increase budget
+    /// - DecreaseCategory: User underspends, reduce budget and reallocate
+    /// - IncreaseSavings: Low savings rate, increase savings target
+    /// 
+    /// PRIORITY LEVELS:
+    /// - High: Critical overspending or very low savings rate
+    /// - Medium: Regular overspending but manageable
+    /// - Low: Optimization suggestions
+    /// 
+    /// DATA ANALYZED:
+    /// - Monthly spending patterns per category
+    /// - Average monthly spending
+    /// - Savings rate (savings/income %)
+    /// - Current budget allocations
     /// </summary>
     public class AISuggestionsService
     {

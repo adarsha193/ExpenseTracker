@@ -1,7 +1,31 @@
 namespace ExpenseTracker.Services
 {
     /// <summary>
-    /// Service for handling local notifications
+    /// Notification Service - Local Alerts & Notifications Feature
+    /// 
+    /// FEATURES:
+    /// - Sends budget alert notifications
+    /// - Sends critical overspending alerts
+    /// - Sends warning alerts when approaching budget limits (90%)
+    /// - Sends daily budget summary notifications
+    /// - Platform-specific notification handling (Android, iOS, macOS, Windows)
+    /// 
+    /// NOTIFICATION TYPES:
+    /// - BudgetAlert: General budget notifications
+    /// - CriticalAlert: Overspending exceeded limit (🚨)
+    /// - WarningAlert: Approaching budget limit (⚠️)
+    /// - DailySummary: Daily budget status and exceeded categories
+    /// 
+    /// IMPLEMENTATION:
+    /// - Uses MAUI notification APIs for cross-platform support
+    /// - Android 8.0+: Notification channels for proper categorization
+    /// - Falls back to dialog service for UI alerts
+    /// - All notifications logged to debug console
+    /// 
+    /// INTEGRATION:
+    /// - Called by BudgetAlertService when alerts are triggered
+    /// - Scheduled by app for daily summary notifications
+    /// - User can configure notification preferences in settings
     /// </summary>
     public class NotificationService
     {

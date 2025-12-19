@@ -5,8 +5,32 @@ using ExpenseTracker.Models;
 namespace ExpenseTracker.Services;
 
 /// <summary>
-/// Firebase Realtime Database authentication service
-/// Integrates with your Firebase RTDB at: https://expanse-tracker-2a875-default-rtdb.firebaseio.com/
+/// Firebase Realtime Database Integration Service - Core Backend Service
+/// 
+/// FEATURES:
+/// - Authentication: User login, registration, password recovery
+/// - Expense Management: CRUD operations for user expenses with categories
+/// - Budget Management: Set, retrieve, and monitor spending budgets
+/// - Profile Management: Store and retrieve user profile information
+/// - Salary & Investment Tracking: Manage income and investment portfolio
+/// - Real-time Synchronization: All data synced with Firebase RTDB
+/// 
+/// API ENDPOINTS:
+/// - Authentication: Firebase Identity Toolkit REST API
+/// - Database: Firebase Realtime Database REST API
+/// - Security: Uses auth tokens stored in SecureStorage
+/// 
+/// DATABASE STRUCTURE:
+/// /users/{userId} - User profile data
+/// /expenses/{userId}/{expenseId} - User's expenses
+/// /budgets/{userId}/{categoryId} - Budget allocations
+/// /salary/{userId} - Monthly salary info
+/// /investments/{userId}/{investmentId} - Investment portfolio
+/// 
+/// ERROR HANDLING:
+/// - All methods return response objects with Success flag and error messages
+/// - Firebase errors are parsed and converted to user-friendly messages
+/// - Network timeouts set to 30 seconds with retry capability
 /// </summary>
 public class FirebaseRealtimeDbService
 {

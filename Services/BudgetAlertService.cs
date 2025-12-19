@@ -3,7 +3,25 @@ using ExpenseTracker.Models;
 namespace ExpenseTracker.Services
 {
     /// <summary>
-    /// Service for monitoring budget alerts and detecting overspending
+    /// Budget Alert Service - Budget Monitoring & Alert Feature
+    /// 
+    /// FEATURES:
+    /// - Monitors spending against user-defined budget limits
+    /// - Detects overspending in real-time
+    /// - Provides alert levels: Warning (90%), Critical (100%+)
+    /// - Tracks overage amounts and percentages
+    /// - Generates alerts for single categories or all categories
+    /// 
+    /// ALERT LEVELS:
+    /// - Green: < 75% of budget used
+    /// - Yellow: 75-90% of budget used (warning)
+    /// - Orange: 90-100% of budget used (caution)
+    /// - Red: > 100% of budget used (exceeded)
+    /// 
+    /// USAGE:
+    /// - Called by DashboardPage for real-time monitoring
+    /// - Used by NotificationService to send alerts
+    /// - Integrated with AISuggestionsService for recommendations
     /// </summary>
     public class BudgetAlertService
     {

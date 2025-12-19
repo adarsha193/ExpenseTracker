@@ -5,6 +5,35 @@ using ExpenseTracker.Resources;
 namespace ExpenseTracker;
 
 /// <summary>
+/// Dashboard Page - Main Application Feature
+/// 
+/// FEATURES:
+/// - Real-time expense summary for current month
+/// - Category-wise spending visualization
+/// - Monthly salary, investment, and savings display
+/// - Budget progress tracking
+/// - Recent expenses quick view
+/// - New user onboarding detection
+/// - Responsive layout for all screen sizes
+/// 
+/// SECTIONS:
+/// 1. Header: Monthly salary, investments, total spent
+/// 2. Budget Progress Bar: Visual representation of budget usage
+/// 3. Savings Rate: Percentage of income saved
+/// 4. Category Breakdown: Pie-chart style visualization
+/// 5. Recent Expenses: Last 3 transactions
+/// 
+/// DATA SOURCE:
+/// - DashboardPageViewModel loads data from Firebase
+/// - Auto-refreshes on page appearance
+/// - Shows loading indicator during data fetch
+/// 
+/// NAVIGATION:
+/// - AppBar buttons for navigation to other pages
+/// - Tab-based navigation to different expense views
+/// </summary>
+
+/// <summary>
 /// Converter to change text color to gray when data is 0 (indicating empty)
 /// </summary>
 public class DataEmptyColorConverter : IValueConverter

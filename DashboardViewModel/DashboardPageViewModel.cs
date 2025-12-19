@@ -4,6 +4,9 @@ using ExpenseTracker.Services;
 
 namespace ExpenseTracker;
 
+/// <summary>
+/// Represents a single expense displayed in the dashboard
+/// </summary>
 public class ExpenseItem
 {
     public string? Category { get; set; }
@@ -17,6 +20,10 @@ public class ExpenseItem
     public string? Location { get; set; }
 }
 
+/// <summary>
+/// Represents a spending category with its total amount and percentage breakdown
+/// Used for displaying category-wise expense visualization in the dashboard
+/// </summary>
 public class CategoryItem : BindableObject
 {
     private decimal _amount;
@@ -87,6 +94,10 @@ public class CategoryItem : BindableObject
     }
 }
 
+/// <summary>
+/// Converts expense percentage (0-100) to progress bar value (0.0-1.0)
+/// Used for visual progress indicators in XAML binding
+/// </summary>
 public class ProgressConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, System.Globalization.CultureInfo culture)
@@ -104,6 +115,10 @@ public class ProgressConverter : IValueConverter
     }
 }
 
+/// <summary>
+/// Converts percentage value to XAML grid column widths (e.g., "37*,63*" for 37% and 63%)
+/// Used for proportional width distribution in dashboard visuals
+/// </summary>
 public class PercentageWidthConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, System.Globalization.CultureInfo culture)
@@ -122,6 +137,29 @@ public class PercentageWidthConverter : IValueConverter
     }
 }
 
+/// <summary>
+/// Dashboard ViewModel - Core Dashboard Feature
+/// 
+/// FEATURES:
+/// - Displays real-time expense summary for current month
+/// - Shows category-wise spending breakdown with visual progress bars
+/// - Calculates and displays monthly salary, total investments, and savings rate
+/// - Tracks budget progress percentage
+/// - Shows 3 most recent expenses
+/// - Identifies new users for onboarding
+/// 
+/// DATA LOADED FROM FIREBASE:
+/// - User's expenses (filtered by current month)
+/// - Monthly salary
+/// - Investment portfolio
+/// - Budget allocations
+/// 
+/// CALCULATIONS:
+/// - Total spent: Sum of current month expenses
+/// - Budget progress: (Total Spent / Total Budget) * 100
+/// - Savings rate: ((Salary - Spent) / Salary) * 100
+/// - Category breakdown: Grouped expenses by category with percentages
+/// </summary>
 public class DashboardPageViewModel : BindableObject
 {
     private readonly FirebaseRealtimeDbService _authService;

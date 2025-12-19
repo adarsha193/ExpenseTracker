@@ -129,4 +129,7 @@
     <!-- Logout menu item -->
     <MenuItem Text="Logout" Clicked="OnLogoutClicked" />
 
+    <!-- Routes -->
+    <ShellContent Route="add-investment" ContentTemplate="{DataTemplate investment:AddInvestmentPage}" />
+
 </Shell>

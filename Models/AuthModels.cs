@@ -1,6 +1,21 @@
 namespace ExpenseTracker.Models;
 
 /// <summary>
+/// Authentication Request/Response Models
+/// 
+/// FLOW:
+/// 1. User submits LoginRequest or RegisterRequest
+/// 2. FirebaseRealtimeDbService processes the request
+/// 3. AuthResponse returned with Success flag, User data, and Auth token
+/// 4. Token stored in SecureStorage for subsequent API calls
+/// 
+/// SECURITY:
+/// - Passwords never stored locally (only in SecureStorage)
+/// - Auth tokens have expiration and auto-refresh capability
+/// - All requests use HTTPS with Firebase identity toolkit
+/// </summary>
+
+/// <summary>
 /// Request model for user login
 /// </summary>
 public class LoginRequest
