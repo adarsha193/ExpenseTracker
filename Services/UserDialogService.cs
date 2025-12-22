@@ -9,6 +9,7 @@ namespace ExpenseTracker.Services
     /// FEATURES:
     /// - Displays alert dialogs to the user
     /// - Shows confirmation dialogs with Yes/No options
+    /// - Displays action sheets with multiple options
     /// - Thread-safe execution on main UI thread
     /// - Centralized UI interaction for consistent UX
     /// 
@@ -53,6 +54,36 @@ namespace ExpenseTracker.Services
                 });
             }
             catch { return false; }
+        }
+
+        public async Task<bool> ShowConfirmationAsync(string title, string message)
+        {
+            try
+            {
+                return await MainThread.InvokeOnMainThreadAsync(async () =>
+                {
+                    var page = Application.Current?.MainPage;
+                    if (page != null)
+                        return await page.DisplayAlert(title, message, "Yes", "No");
+                    return false;
+                });
+            }
+            catch { return false; }
+        }
+
+        public async Task<string?> ShowActionSheetAsync(string title, string cancel, string? destruction, string[] buttons)
+        {
+            try
+            {
+                return await MainThread.InvokeOnMainThreadAsync(async () =>
+                {
+                    var page = Application.Current?.MainPage;
+                    if (page != null)
+                        return await page.DisplayActionSheet(title, cancel, destruction, buttons);
+                    return null;
+                });
+            }
+            catch { return null; }
         }
     }
 }

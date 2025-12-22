@@ -10,10 +10,20 @@ public class InvestmentReturnConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is InvestmentModel investment)
+        try
         {
-            var expectedReturn = (investment.Amount * (investment.ReturnRate ?? 0)) / 100;
-            return $"₹{expectedReturn:N2}";
+            if (value is InvestmentModel investment)
+            {
+                if (investment.Amount <= 0)
+                    return "₹0.00";
+
+                var expectedReturn = (investment.Amount * (investment.ReturnRate ?? 0)) / 100;
+                return $"₹{expectedReturn:N2}";
+            }
+        }
+        catch
+        {
+            return "₹0.00";
         }
 
         return "₹0.00";

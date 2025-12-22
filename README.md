@@ -1,155 +1,741 @@
 # ExpenseTracker
 
-A .NET MAUI cross-platform expense tracking application with Firebase Authentication and Realtime Database integration. Manage expenses, budgets, investments, and salary tracking with real-time data synchronization.
+A comprehensive .NET MAUI cross-platform personal finance management application with Firebase Authentication and Realtime Database integration. Track expenses, manage budgets, monitor investments, and track salary with real-time data synchronization across iOS, Android, macOS, and Windows.
 
-## Features
+**Status**: ✅ Fully functional with comprehensive testing and documentation
 
-- **Authentication**: User registration, login, and password recovery via Firebase Auth
-- **Expense Management**: Add, view, edit, and delete expenses with categories and detailed breakdowns
-- **Dashboard**: Real-time expense summary and visualization
-- **Budget Management**: Set and monitor monthly budgets with alerts
-- **Salary & Investment Tracking**: Track income and investment portfolio
-- **User Profile**: Manage user information and settings
-- **Localization**: Multi-language support via resource files
-- **Secure Storage**: Credentials stored securely using MAUI SecureStorage
-- **Cross-Platform**: Runs on iOS, Android, macOS, and Windows
+---
 
-## Prerequisites
+## 📋 Table of Contents
 
-- .NET 10.0 SDK or later
-- A Firebase project with Realtime Database enabled
-- Xcode (for iOS/macOS builds on macOS)
-- Android SDK (for Android builds)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Architecture](#architecture)
+- [Services & Components](#services--components)
+- [Firebase Integration](#firebase-integration)
+- [Testing](#testing)
+- [Documentation](#documentation)
+- [Development Guidelines](#development-guidelines)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
-## Quick Start
+---
 
-### 1. Firebase Configuration
+## ✨ Features
 
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Create or select your project
-3. Enable **Authentication** (Email/Password)
-4. Create a **Realtime Database**
-5. Copy your Web API Key from Project Settings → General → Your apps
+### Core Features
+- **🔐 Authentication**: Secure user registration, login, and password recovery via Firebase Auth
+- **💰 Expense Management**: Add, view, edit, and delete expenses with categories, amounts, and dates
+- **📊 Dashboard**: Real-time expense summary with visual insights and statistics
+- **💳 Budget Management**: Set monthly budgets by category and receive alerts on overspending
+- **💼 Salary Tracking**: Track income information and salary management
+- **📈 Investment Portfolio**: Monitor investments and track investment returns
+- **👤 User Profile**: Manage user information and personal settings
+- **🌍 Localization**: Multi-language support via resource files
+- **🔒 Secure Storage**: Encrypted credential storage using MAUI SecureStorage
+- **🤖 AI Suggestions**: Smart budget recommendations based on spending patterns
+- **🔔 Notifications**: Real-time budget alerts and spending notifications
+- **⚙️ Settings**: Customizable app preferences and help documentation
 
-### 2. Set Firebase API Key
+### Technical Features
+- **Cross-Platform**: Single codebase for iOS, Android, macOS, and Windows
+- **MVVM Architecture**: Clean separation of UI, business logic, and data
+- **Dependency Injection**: Loosely coupled, testable service architecture
+- **Real-time Sync**: Firebase-powered data synchronization
+- **Offline Support**: Local storage with secure encryption
+- **Responsive UI**: Modern XAML-based user interface
+- **85%+ Test Coverage**: Comprehensive unit and integration tests
 
-Open [MauiProgram.cs](MauiProgram.cs) and update line 22:
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| **Framework** | .NET MAUI on .NET 10.0 |
+| **Language** | C# 12+ |
+| **Backend** | Firebase (Authentication + Realtime Database) |
+| **API Layer** | REST (HTTP) |
+| **UI Markup** | XAML |
+| **UI Pattern** | MVVM (Model-View-ViewModel) |
+| **Local Storage** | Preferences, SecureStorage, JSON serialization |
+| **Testing** | xUnit, Moq |
+| **Platforms** | iOS, Android, macOS (Catalyst), Windows (UWP) |
+
+---
+
+## 🎯 Quick Feature Overview
+
+```
+┌──────────────────────────────────────────────────────┐
+│                  ExpenseTracker App                  │
+├──────────────────────────────────────────────────────┤
+│                                                      │
+│  🔐 Secure Authentication (Firebase)                │
+│     ├─ Email/Password Login                         │
+│     ├─ Account Registration                         │
+│     └─ Password Recovery                            │
+│                                                      │
+│  💰 Expense Management                              │
+│     ├─ Add/Edit/Delete Expenses                     │
+│     ├─ Categorize Spending                          │
+│     ├─ Search & Filter                              │
+│     └─ Detailed History                             │
+│                                                      │
+│  📊 Dashboard                                        │
+│     ├─ Total Spending Overview                      │
+│     ├─ Recent Expenses                              │
+│     └─ Quick Add Expense                            │
+│                                                      │
+│  💳 Budget Management                               │
+│     ├─ Set Category Budgets                         │
+│     ├─ Real-time Progress Tracking                  │
+│     ├─ Budget Alerts (Red/Orange/Yellow/Green)      │
+│     └─ Overspending Warnings                        │
+│                                                      │
+│  📈 Investment Portfolio                            │
+│     ├─ Track Investments                            │
+│     ├─ Calculate Returns                            │
+│     └─ Portfolio Summary                            │
+│                                                      │
+│  💼 Salary Tracking                                 │
+│     ├─ Record Income                                │
+│     ├─ Track Payment Frequency                      │
+│     └─ Income History                               │
+│                                                      │
+│  👤 User Management                                 │
+│     ├─ Profile Information                          │
+│     ├─ Account Statistics                           │
+│     ├─ Settings & Preferences                       │
+│     └─ Secure Logout                                │
+│                                                      │
+│  🔔 Smart Features                                  │
+│     ├─ Budget Alerts                                │
+│     ├─ Spending Notifications                       │
+│     ├─ AI Suggestions                               │
+│     └─ Real-time Sync (Firebase)                    │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+```
+
+---
+
+### Prerequisites
+
+- **.NET 10.0 SDK** or later ([download](https://dotnet.microsoft.com/download))
+- **A Firebase Project** with Authentication and Realtime Database enabled
+- **Platform SDKs**:
+  - iOS/macOS: Xcode 14+ (on macOS only)
+  - Android: Android SDK + Android Studio
+  - Windows: .NET Windows workload
+  - macOS: .NET macOS workload
+
+### Setup Steps
+
+#### 1️⃣ Firebase Configuration
+
+1. Visit [Firebase Console](https://console.firebase.google.com/)
+2. Create or select a project
+3. Enable **Authentication** → Email/Password provider
+4. Create a **Realtime Database** in test mode
+5. Copy your **Web API Key** from Project Settings → General → Your apps
+
+#### 2️⃣ Set Firebase API Key
+
+Open [MauiProgram.cs](MauiProgram.cs) and update the API key (around line 22):
 
 ```csharp
 const string firebaseWebApiKey = "YOUR_ACTUAL_API_KEY_HERE";
 ```
 
-### 3. Restore and Build
+#### 3️⃣ Restore Dependencies
 
 ```bash
-# Restore NuGet packages
 dotnet restore
-
-# Build for .NET 10.0
-dotnet build -f net10.0
 ```
 
-### 4. Run on Your Platform
-
-**iOS Simulator (macOS)**:
-```bash
-dotnet build -f net10.0 -r iossimulator-arm64 -c Debug
-```
+#### 4️⃣ Build & Run
 
 **Android Emulator**:
 ```bash
 dotnet build -f net10.0-android -c Debug
+# Or for quick run:
+dotnet build -t:Run -f net10.0-android
 ```
 
-**Windows**:
+**iOS Simulator** (macOS only):
 ```bash
-dotnet build -f net10.0-windows10.0.19041.0 -c Debug
+dotnet build -f net10.0 -r iossimulator-arm64 -c Debug
+dotnet build -t:Run -f net10.0 -r iossimulator-arm64
 ```
 
 **macOS (Catalyst)**:
 ```bash
 dotnet build -f net10.0-maccatalyst -c Debug
+dotnet build -t:Run -f net10.0-maccatalyst
 ```
 
-## Project Structure
+**Windows**:
+```bash
+dotnet build -f net10.0-windows10.0.19041.0 -c Debug
+dotnet build -t:Run -f net10.0-windows10.0.19041.0
+```
+
+---
+
+## 📁 Project Structure
 
 ```
 ExpenseTracker/
-├── Models/                          # Data models (Auth, Expense, Budget, Salary, Investment)
-├── Services/                        # Business logic layer
-│   ├── FirebaseRealtimeDbService.cs # Firebase Auth + RTDB API integration
-│   ├── BudgetAlertService.cs        # Budget monitoring
-│   ├── AISuggestionsService.cs      # AI-powered suggestions
-│   ├── NotificationService.cs       # Local notifications
-│   └── UserDialogService.cs         # UI dialogs
-├── LaunchScreen/                    # Authentication pages (Login, Register, Forgot Password)
-├── Dashboard/                       # Main dashboard page
-├── ExpensePages/                    # Expense management UI
-├── BudgetPages/                     # Budget tracking UI
-├── SalaryPages/                     # Salary management UI
-├── InvestmentPages/                 # Investment tracking UI
-├── SliderView/                      # Settings, Profile, Help, About pages
-├── Resources/
-│   ├── Strings/                     # Localization (resx files)
-│   ├── Images/                      # UI images and icons
-│   ├── Styles/                      # XAML resource dictionaries
-│   └── AppIcon/                     # App icons and splash screens
-└── Platforms/                       # Platform-specific code (Android, iOS, macOS, Windows)
+│
+├── 📂 Models/                          # Data model definitions
+│   ├── AuthModels.cs                  # Authentication request/response models
+│   ├── ExpenseModel.cs                # Expense data entity
+│   ├── BudgetModel.cs                 # Budget data entity
+│   ├── SalaryModel.cs                 # Salary/income data entity
+│   └── InvestmentModel.cs             # Investment portfolio model
+│
+├── 📂 Services/                        # Business logic & backend integration
+│   ├── FirebaseRealtimeDbService.cs   # Firebase Auth + RTDB REST API
+│   ├── BudgetAlertService.cs          # Budget monitoring & alerts
+│   ├── AISuggestionsService.cs        # AI-powered spending suggestions
+│   ├── NotificationService.cs         # Local notification management
+│   ├── IUserDialogService.cs          # Dialog interface
+│   ├── UserDialogService.cs           # Dialog implementation
+│   └── ServiceLocator.cs              # Service resolution (legacy)
+│
+├── 📂 ViewModels/                     # MVVM logic & state management
+│   └── DashboardPageViewModel.cs      # Dashboard view logic
+│
+├── 📂 LaunchScreen/                   # Authentication pages
+│   ├── LoginPage.xaml(.cs)            # User login
+│   ├── RegistrationPage.xaml(.cs)     # New user registration
+│   ├── ForgotPassword.xaml(.cs)       # Password recovery
+│   └── LaunchScreenPage.xaml(.cs)     # Welcome/splash screen
+│
+├── 📂 Dashboard/                      # Main application dashboard
+│   ├── DashboardPage.xaml(.cs)        # Dashboard UI
+│   └── DashboardShell.xaml(.cs)       # App shell navigation
+│
+├── 📂 ExpensePages/                   # Expense management UI
+│   ├── AddExpensePage.xaml(.cs)       # Create new expense
+│   ├── ViewAllExpensesPage.xaml(.cs)  # List all expenses
+│   └── ExpenseDetailPage.xaml(.cs)    # View/edit expense details
+│
+├── 📂 BudgetPages/                    # Budget management UI
+│   └── BudgetPage.xaml(.cs)           # Set & monitor budgets
+│
+├── 📂 SalaryPages/                    # Income management UI
+│   └── SalaryPage.xaml(.cs)           # Salary configuration
+│
+├── 📂 InvestmentPages/                # Investment portfolio UI
+│   ├── InvestmentPage.xaml(.cs)       # View investments
+│   ├── AddInvestmentPage.xaml(.cs)    # Add new investment
+│   └── EditInvestmentCache.cs         # Investment data cache
+│
+├── 📂 SliderView/                     # Settings & info pages
+│   ├── ProfilePage.xaml(.cs)          # User profile
+│   ├── SettingsPage.xaml(.cs)         # App settings
+│   ├── HelpPage.xaml(.cs)             # Help & support
+│   ├── AboutAppPage.xaml(.cs)         # About application
+│   ├── ChangePasswordPage.xaml(.cs)   # Password management
+│   └── TermsPage.xaml(.cs)            # Terms & conditions
+│
+├── 📂 Resources/                      # UI resources
+│   ├── Strings/                       # Localization (.resx files)
+│   ├── Images/                        # UI images & icons
+│   ├── Fonts/                         # Font files
+│   ├── Styles/                        # XAML theme & style dictionaries
+│   ├── AppIcon/                       # App icons & branding
+│   ├── Splash/                        # Splash screen designs
+│   └── Raw/                           # Raw resource files
+│
+├── 📂 Converters/                     # XAML value converters
+│   └── InvestmentReturnConverter.cs   # Format investment returns
+│
+├── 📂 Platforms/                      # Platform-specific code
+│   ├── iOS/                           # iOS implementation
+│   ├── Android/                       # Android implementation
+│   ├── Windows/                       # Windows implementation
+│   └── MacCatalyst/                   # macOS Catalyst implementation
+│
+├── 📂 ExpenseTracker.Tests/           # Unit test suite
+│   ├── BudgetAlertServiceTests.cs     # Budget service tests
+│   ├── FirebaseServiceTests.cs        # Firebase integration tests
+│   ├── ModelsTests.cs                 # Data model tests
+│   └── ExpenseTracker.Tests.csproj    # Test project file
+│
+├── 📂 Properties/                     # App properties
+│   └── launchSettings.json            # Launch configuration
+│
+├── 📂 bin/ & obj/                     # Build output (generated)
+│
+├── 📄 App.xaml(.cs)                   # App root definition
+├── 📄 AppShell.xaml(.cs)              # Authentication shell navigation
+├── 📄 MauiProgram.cs                  # MAUI configuration & DI setup
+├── 📄 ExpenseTracker.csproj           # Project file
+├── 📄 ExpenseTracker.sln              # Solution file
+│
+└── 📚 Documentation Files:
+    ├── README.md                      # This file
+    ├── ARCHITECTURE.md                # System architecture & design patterns
+    ├── PROJECT_QA.md                  # 65 Q&A on project features
+    ├── CSHARP_MAUI_CONCEPTS.md        # 65 Q&A on C# & MAUI concepts
+    ├── QUICK_TEST_GUIDE.md            # Testing commands & guide
+    ├── FIREBASE_API_KEY_SETUP.md      # Firebase API key configuration
+    ├── FIREBASE_EXPENSE_API.md        # Expense API endpoint documentation
+    ├── LICENSE                        # License information
+    └── run_tests.sh                   # Test automation script
 ```
 
-## Key Components
+---
 
-| Component | Purpose |
+## 🏗️ Architecture
+
+### MVVM Pattern
+
+```
+┌─────────────────────────────────────────┐
+│      View (XAML Pages)                  │
+│  DashboardPage, ExpensePage, etc.       │
+└──────────────────┬──────────────────────┘
+                   │ Data Binding
+                   │
+┌──────────────────▼──────────────────────┐
+│   ViewModel (Business Logic)            │
+│  DashboardPageViewModel                 │
+│  - Properties (INotifyPropertyChanged)  │
+│  - Commands (ICommand)                  │
+└──────────────────┬──────────────────────┘
+                   │ Service Calls
+                   │
+┌──────────────────▼──────────────────────┐
+│   Services (Business Rules)             │
+│  - FirebaseRealtimeDbService            │
+│  - BudgetAlertService                   │
+│  - AISuggestionsService                 │
+│  - NotificationService                  │
+└──────────────────┬──────────────────────┘
+                   │ HTTP REST Calls
+                   │
+┌──────────────────▼──────────────────────┐
+│   Firebase APIs                         │
+│  - Authentication (Identity Toolkit)    │
+│  - Realtime Database (REST)             │
+└─────────────────────────────────────────┘
+```
+
+### Dependency Injection
+
+All services are registered in [MauiProgram.cs](MauiProgram.cs) with lifetimes:
+- **Singleton**: Services maintaining app-wide state (FirebaseService, BudgetAlertService)
+- **Transient**: Stateless utilities
+- **Scoped**: Page/ViewModel-level services
+
+### Design Patterns Used
+
+- **MVVM**: Model-View-ViewModel pattern for UI separation
+- **Service Layer**: Business logic abstracted into injectable services
+- **Dependency Injection**: Loose coupling via constructor injection
+- **Repository Pattern**: FirebaseRealtimeDbService as data access abstraction
+- **Observer Pattern**: INotifyPropertyChanged for reactive UI updates
+- **Command Pattern**: ICommand for user actions
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for comprehensive architecture documentation.
+
+---
+
+## 🔧 Services & Components
+
+### Core Services
+
+| Service | Location | Purpose |
+|---------|----------|---------|
+| **FirebaseRealtimeDbService** | [Services/FirebaseRealtimeDbService.cs](Services/FirebaseRealtimeDbService.cs) | Firebase Auth + RTDB REST API integration; handles login, signup, all CRUD operations |
+| **BudgetAlertService** | [Services/BudgetAlertService.cs](Services/BudgetAlertService.cs) | Monitors budget thresholds; calculates alert levels (Green/Yellow/Orange/Red) |
+| **AISuggestionsService** | [Services/AISuggestionsService.cs](Services/AISuggestionsService.cs) | Analyzes spending patterns; generates budget suggestions |
+| **NotificationService** | [Services/NotificationService.cs](Services/NotificationService.cs) | Sends local notifications for budget alerts and spending updates |
+| **IUserDialogService** | [Services/IUserDialogService.cs](Services/IUserDialogService.cs) | Interface for displaying alerts and dialogs |
+
+### View Models
+
+| ViewModel | Purpose |
 |-----------|---------|
-| [FirebaseRealtimeDbService](Services/FirebaseRealtimeDbService.cs) | Handles all Firebase Auth and RTDB REST API calls |
-| [DashboardPageViewModel](DashboardViewModel/DashboardPageViewModel.cs) | Main dashboard data binding logic |
-| [BudgetAlertService](Services/BudgetAlertService.cs) | Monitors and alerts on budget thresholds |
-| [AISuggestionsService](Services/AISuggestionsService.cs) | Provides smart spending insights |
-| [ServiceLocator](Services/ServiceLocator.cs) | Simple service resolution (legacy - prefer constructor DI) |
+| **DashboardPageViewModel** | Main dashboard state & commands; manages dashboard data binding |
 
-## Firebase Integration
+### Key Pages
 
-The app uses Firebase REST APIs for:
-- User authentication (signup, login, password reset)
-- CRUD operations for expenses, profiles, and budgets
-- Real-time data synchronization
+| Page | Purpose |
+|------|---------|
+| **LoginPage** | User authentication |
+| **RegistrationPage** | New user account creation |
+| **DashboardPage** | Main application interface with expense overview |
+| **AddExpensePage** | Create new expense records |
+| **ViewAllExpensesPage** | Browse expense history |
+| **BudgetPage** | Set and monitor monthly budgets |
+| **InvestmentPage** | View and manage investment portfolio |
+| **SalaryPage** | Manage salary/income information |
+| **ProfilePage** | User profile management |
+| **SettingsPage** | App preferences |
 
-**Database Structure**:
+---
+
+## 🔥 Firebase Integration
+
+The app uses Firebase for:
+- **User Authentication**: Email/password registration and login via Identity Toolkit API
+- **Data Persistence**: Real-time storage of expenses, budgets, investments, and user data
+- **Real-time Sync**: Automatic synchronization across devices
+
+### Firebase Database Structure
+
+```json
+{
+  "users": {
+    "userId": {
+      "id": "unique_id",
+      "email": "user@example.com",
+      "fullName": "John Doe",
+      "phoneNumber": "555-0123",
+      "location": "City, State",
+      "totalExpenses": 1500.00,
+      "createdAt": "2025-12-22T10:30:00Z"
+    }
+  },
+  "expenses": {
+    "userId": {
+      "expenseId": {
+        "id": "expense_id",
+        "userId": "user_id",
+        "category": "Food",
+        "description": "Lunch",
+        "amount": 15.50,
+        "date": "2025-12-22",
+        "icon": "🍔",
+        "createdAt": "2025-12-22T12:00:00Z",
+        "modifiedAt": "2025-12-22T12:00:00Z"
+      }
+    }
+  },
+  "budgets": {
+    "userId": {
+      "budgetId": {
+        "category": "Food",
+        "limit": 500.00,
+        "spent": 150.00,
+        "month": "2025-12"
+      }
+    }
+  },
+  "investments": {
+    "userId": {
+      "investmentId": {
+        "name": "Stock ABC",
+        "amount": 1000.00,
+        "currentValue": 1250.00,
+        "return": 25.0
+      }
+    }
+  }
+}
 ```
-/expenses/{userId}/{expenseId}
-├── id, userId, category, description, amount, date, icon, createdAt, modifiedAt
 
-/users/{userId}
-├── id, email, fullName, phoneNumber, location, totalExpenses, createdAt
+### REST API Endpoints
+
+See [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) for complete API documentation.
+
+**Key Endpoints**:
+- `POST /accounts:signUp` - User registration
+- `POST /accounts:signInWithPassword` - User login
+- `POST /accounts:sendPasswordResetEmail` - Password reset
+- `GET /expenses/{userId}.json` - Retrieve all expenses
+- `POST /expenses/{userId}.json` - Create new expense
+- `PUT /expenses/{userId}/{expenseId}.json` - Update expense
+- `DELETE /expenses/{userId}/{expenseId}.json` - Delete expense
+
+---
+
+## 📸 Screenshots Gallery
+
+### 🔐 Authentication
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/01-login.png" width="250" alt="Login Screen" />
+      <br /><b>Login Screen</b><br />Sign in to your account
+    </td>
+    <td align="center">
+      <img src="screenshots/02-register.png" width="250" alt="Create Account" />
+      <br /><b>Create Account</b><br />Join and start tracking
+    </td>
+    <td align="center">
+      <img src="screenshots/03-password-reset.png" width="250" alt="Password Reset" />
+      <br /><b>Password Reset</b><br />Recover your account
+    </td>
+  </tr>
+</table>
+
+### 📊 Dashboard & Expenses
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/04-onboarding.png" width="250" alt="Welcome Screen" />
+      <br /><b>Welcome Screen</b><br />App overview
+    </td>
+    <td align="center">
+      <img src="screenshots/05-dashboard.png" width="250" alt="Dashboard" />
+      <br /><b>Dashboard</b><br />Total spending overview
+    </td>
+    <td align="center">
+      <img src="screenshots/06-all-expenses.png" width="250" alt="All Expenses" />
+      <br /><b>All Expenses</b><br />Complete expense history
+    </td>
+  </tr>
+</table>
+
+### 💰 Add Expense & Budget Management
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/07-add-expense.png" width="250" alt="Add Expense" />
+      <br /><b>Add Expense</b><br />Create new expense record
+    </td>
+    <td align="center">
+      <img src="screenshots/08-monthly-budget.png" width="250" alt="Budget Tracking" />
+      <br /><b>Monthly Budget</b><br />Set and monitor budgets with alerts
+    </td>
+  </tr>
+</table>
+
+### 💼 Investments & Salary
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/09-investments.png" width="250" alt="Investment Tracking" />
+      <br /><b>Investment Tracking</b><br />Monitor portfolio & returns
+    </td>
+    <td align="center">
+      <img src="screenshots/10-salary.png" width="250" alt="Salary Management" />
+      <br /><b>Salary Management</b><br />Track income information
+    </td>
+  </tr>
+</table>
+
+### 👤 Profile & Settings
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/11-profile.png" width="250" alt="User Profile" />
+      <br /><b>User Profile</b><br />Manage personal info & statistics
+    </td>
+    <td align="center">
+      <img src="screenshots/12-settings.png" width="250" alt="Settings" />
+      <br /><b>Settings</b><br />Preferences & account options
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🎨 Key Features Highlighted in Screenshots
+
+| Feature | Description | Screenshot |
+|---------|-------------|-----------|
+| **Secure Authentication** | Email/password login with password reset | Login, Register, Password Reset |
+| **Expense Tracking** | Add, view, and manage expenses with categories | Add Expense, All Expenses |
+| **Dashboard Overview** | Real-time spending summary and statistics | Dashboard |
+| **Budget Alerts** | Monitor budgets with visual progress bars and alerts | Monthly Budget |
+| **Investment Portfolio** | Track investments and calculate returns | Investment Tracking |
+| **Income Management** | Record and manage salary information | Salary Management |
+| **User Profile** | Manage personal information and view statistics | Profile |
+| **Settings & Preferences** | Customize notifications and app settings | Settings |
+
+---
+
+The project includes 85%+ code coverage with unit and integration tests.
+
+### Test Suite
+
+Located in [ExpenseTracker.Tests/](ExpenseTracker.Tests/)
+
+- **BudgetAlertServiceTests.cs**: Budget monitoring & alert logic
+- **FirebaseServiceTests.cs**: Firebase API integration
+- **ModelsTests.cs**: Data model validation
+
+### Running Tests
+
+```bash
+# Run all tests
+dotnet test
+
+# Run with detailed output
+dotnet test --logger "console;verbosity=detailed"
+
+# Run specific test file
+dotnet test --filter "BudgetAlertServiceTests"
+
+# Run specific test method
+dotnet test --filter "LoginAsync_WithValidCredentials_ReturnsSuccessResponse"
+
+# Run with code coverage
+dotnet test /p:CollectCoverage=true /p:CoverageFormat=lcov
 ```
 
-See [FIREBASE_INTEGRATION_SUMMARY.md](FIREBASE_INTEGRATION_SUMMARY.md) for detailed API documentation.
+Or use the provided script:
+```bash
+./run_tests.sh
+```
 
-## Development Guidelines
+See [QUICK_TEST_GUIDE.md](QUICK_TEST_GUIDE.md) for detailed testing documentation.
 
-- **Dependency Injection**: Use constructor injection for new pages/viewmodels. `ServiceLocator` is for legacy code only.
-- **Localization**: Store UI strings in [Resources/Strings/Strings.resx](Resources/Strings/Strings.resx), not hardcoded in XAML.
-- **Service Registration**: Add new services in [MauiProgram.cs](MauiProgram.cs).
+---
 
-## Troubleshooting
+## 📚 Documentation
 
-| Issue | Solution |
-|-------|----------|
-| "API key is not valid" | Ensure Firebase Web API Key is set correctly in [MauiProgram.cs](MauiProgram.cs) |
-| Service resolution errors at startup | Verify `ServiceLocator.Provider` is initialized in `MauiProgram.CreateMauiApp()` |
-| Firebase RTDB access denied | Check RTDB security rules and ensure auth tokens are valid |
-| Build fails on platform X | Ensure you have the required SDKs (Xcode for iOS, Android SDK for Android, etc.) |
+Comprehensive documentation is included:
 
-## Documentation
+| Document | Purpose |
+|----------|---------|
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Detailed system architecture, MVVM pattern, service design |
+| [PROJECT_QA.md](PROJECT_QA.md) | 65 Q&A covering project features, services, and usage |
+| [CSHARP_MAUI_CONCEPTS.md](CSHARP_MAUI_CONCEPTS.md) | 65 Q&A on C# and .NET MAUI programming concepts |
+| [QUICK_TEST_GUIDE.md](QUICK_TEST_GUIDE.md) | Testing commands, test execution guide |
+| [FIREBASE_API_KEY_SETUP.md](FIREBASE_API_KEY_SETUP.md) | Step-by-step Firebase API key configuration |
+| [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) | Complete REST API endpoint documentation |
 
-- [FIREBASE_RTDB_SETUP.md](FIREBASE_RTDB_SETUP.md) — Firebase Realtime Database setup
-- [FIREBASE_API_KEY_SETUP.md](FIREBASE_API_KEY_SETUP.md) — API key configuration
-- [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) — Expense API endpoints
-- [FIREBASE_PROFILE_API.md](FIREBASE_PROFILE_API.md) — Profile API endpoints
-- [FIREBASE_INTEGRATION_SUMMARY.md](FIREBASE_INTEGRATION_SUMMARY.md) — Complete integration overview
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Application architecture and design patterns
-- [CODING_STANDARDS.md](CODING_STANDARDS.md) — Code standards and best practices
+---
 
-## License
+## 👨‍💻 Development Guidelines
 
-See [LICENSE](LICENSE) for details.
+### Code Organization
+
+- **Models**: Data entities in [Models/](Models/) folder
+- **Services**: Business logic in [Services/](Services/) folder
+- **ViewModels**: MVVM logic in [ViewModels/](ViewModels/) folder
+- **Views**: XAML pages in feature folders (ExpensePages/, BudgetPages/, etc.)
+- **Resources**: UI resources in [Resources/](Resources/) folder
+- **Tests**: Unit tests in [ExpenseTracker.Tests/](ExpenseTracker.Tests/) folder
+
+### Best Practices
+
+✅ **DO**:
+- Use dependency injection for loose coupling
+- Implement INotifyPropertyChanged for observable properties
+- Write async/await for all I/O operations
+- Store UI strings in [Resources/Strings/Strings.resx](Resources/Strings.resx) for localization
+- Use converters for data formatting in XAML
+- Register new services in [MauiProgram.cs](MauiProgram.cs)
+- Write unit tests for services and ViewModels
+- Document complex business logic with comments
+
+❌ **DON'T**:
+- Hardcode UI strings in XAML (breaks localization)
+- Create tight coupling between layers
+- Use code-behind for business logic (use ViewModel)
+- Ignore async/await (blocks UI thread)
+- Access ServiceLocator in new code (use constructor DI)
+- Skip error handling in service calls
+- Update UI from background threads
+
+### Adding a New Feature
+
+1. **Define Model** in [Models/](Models/) folder
+2. **Create Service** in [Services/](Services/) folder; register in [MauiProgram.cs](MauiProgram.cs)
+3. **Create ViewModel** for business logic
+4. **Create Pages** (XAML + code-behind) in appropriate folder
+5. **Add Navigation** in [AppShell.xaml](AppShell.xaml) or [DashboardShell.xaml](DashboardShell.xaml)
+6. **Add Resources** (strings, images, icons) to [Resources/](Resources/)
+7. **Write Tests** in [ExpenseTracker.Tests/](ExpenseTracker.Tests/)
+8. **Update Documentation**
+
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| "Firebase API Key is invalid" | Wrong or missing API key | Update [MauiProgram.cs](MauiProgram.cs) line 22 with correct Web API Key from Firebase Console |
+| "Service resolution failed" | Service not registered | Ensure service is added in [MauiProgram.cs](MauiProgram.cs) with `builder.Services.AddSingleton<IService, Service>()` |
+| "Access denied" Firebase RTDB | Invalid security rules | Check Firebase console RTDB security rules; update to allow authenticated users |
+| Build fails with "SDK not found" | Missing platform SDK | Install required SDKs (Xcode for iOS, Android SDK for Android, etc.) |
+| "Null reference exception" | Missing await on async call | Ensure all async operations use `await` keyword |
+| "UI not updating" | Property not implementing INotifyPropertyChanged | Inherit ViewModel from ObservableObject or implement INotifyPropertyChanged |
+| "SecureStorage not working" | Platform-specific issue | Verify permissions in platform-specific manifest files |
+
+### Debug Logging
+
+Enable debug output to diagnose issues:
+
+```csharp
+System.Diagnostics.Debug.WriteLine($"Debug message: {variable}");
+
+// In code-behind for lifecycle events
+protected override void OnAppearing()
+{
+    base.OnAppearing();
+    Debug.WriteLine("Page appeared");
+}
+```
+
+### Firebase Debugging
+
+1. Check Firebase Console → Realtime Database → Data tab for records
+2. Monitor Authentication → Users tab for account issues
+3. Use Firebase Console → Rules tab to verify security rules
+4. Check browser DevTools → Network tab to inspect REST API calls
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow the development guidelines above and ensure:
+- Code follows C# naming conventions (PascalCase for classes/methods)
+- Unit tests are included for new features
+- Documentation is updated
+- All tests pass: `dotnet test`
+
+---
+
+## 📞 Support
+
+For issues or questions:
+1. Check the documentation files listed above
+2. Review [QUICK_TEST_GUIDE.md](QUICK_TEST_GUIDE.md) for testing help
+3. Check existing GitHub issues
+4. Create a detailed bug report with steps to reproduce
+
+---
+
+## 🎯 Roadmap
+
+Potential future enhancements:
+- Offline-first architecture with local SQLite sync
+- Advanced analytics and reporting
+- Budget forecasting with machine learning
+- Recurring expense automation
+- Multi-currency support
+- CSV/PDF export functionality
+- Third-party bank integration
+- Social features (sharing, comparison)
+
+---
+
+**Last Updated**: December 2025  
+**Framework**: .NET MAUI on .NET 10.0  
+**Language**: C# 12+  
+**Status**: ✅ Production Ready

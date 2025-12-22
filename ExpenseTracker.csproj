@@ -39,6 +39,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<!-- Exclude Tests folders from MAUI build -->
+		<Compile Remove="Tests\**" />
+		<Compile Remove="ExpenseTracker.Tests\**" />
+		<None Remove="Tests\**" />
+		<None Remove="ExpenseTracker.Tests\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#6366F1" />
 
