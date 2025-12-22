@@ -459,7 +459,7 @@ See [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) for complete API document
 
 ## 📸 Screenshots Gallery
 
-### 🔐 Authentication
+### 🔐 Authentication Screens
 
 <table>
   <tr>
@@ -478,17 +478,17 @@ See [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) for complete API document
   </tr>
 </table>
 
-### 📊 Dashboard & Expenses
+### 📊 Dashboard & Expense Management
 
 <table>
   <tr>
     <td align="center">
       <img src="screenshots/04-onboarding.png" width="250" alt="Welcome Screen" />
-      <br /><b>Welcome Screen</b><br />App overview
+      <br /><b>Welcome Screen</b><br />App introduction
     </td>
     <td align="center">
       <img src="screenshots/05-dashboard.png" width="250" alt="Dashboard" />
-      <br /><b>Dashboard</b><br />Total spending overview
+      <br /><b>Dashboard</b><br />Spending overview & summary
     </td>
     <td align="center">
       <img src="screenshots/06-all-expenses.png" width="250" alt="All Expenses" />
@@ -497,22 +497,22 @@ See [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) for complete API document
   </tr>
 </table>
 
-### 💰 Add Expense & Budget Management
+### 💰 Expense & Budget Tracking
 
 <table>
   <tr>
     <td align="center">
       <img src="screenshots/07-add-expense.png" width="250" alt="Add Expense" />
-      <br /><b>Add Expense</b><br />Create new expense record
+      <br /><b>Add Expense</b><br />Create new expense with details
     </td>
     <td align="center">
       <img src="screenshots/08-monthly-budget.png" width="250" alt="Budget Tracking" />
-      <br /><b>Monthly Budget</b><br />Set and monitor budgets with alerts
+      <br /><b>Monthly Budget</b><br />Set budgets & receive alerts
     </td>
   </tr>
 </table>
 
-### 💼 Investments & Salary
+### 💼 Investments & Income
 
 <table>
   <tr>
@@ -533,29 +533,14 @@ See [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) for complete API document
   <tr>
     <td align="center">
       <img src="screenshots/11-profile.png" width="250" alt="User Profile" />
-      <br /><b>User Profile</b><br />Manage personal info & statistics
+      <br /><b>User Profile</b><br />Manage personal information
     </td>
     <td align="center">
       <img src="screenshots/12-settings.png" width="250" alt="Settings" />
-      <br /><b>Settings</b><br />Preferences & account options
+      <br /><b>Settings</b><br />App preferences & account
     </td>
   </tr>
 </table>
-
----
-
-## 🎨 Key Features Highlighted in Screenshots
-
-| Feature | Description | Screenshot |
-|---------|-------------|-----------|
-| **Secure Authentication** | Email/password login with password reset | Login, Register, Password Reset |
-| **Expense Tracking** | Add, view, and manage expenses with categories | Add Expense, All Expenses |
-| **Dashboard Overview** | Real-time spending summary and statistics | Dashboard |
-| **Budget Alerts** | Monitor budgets with visual progress bars and alerts | Monthly Budget |
-| **Investment Portfolio** | Track investments and calculate returns | Investment Tracking |
-| **Income Management** | Record and manage salary information | Salary Management |
-| **User Profile** | Manage personal information and view statistics | Profile |
-| **Settings & Preferences** | Customize notifications and app settings | Settings |
 
 ---
 
@@ -604,11 +589,10 @@ Comprehensive documentation is included:
 | Document | Purpose |
 |----------|---------|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Detailed system architecture, MVVM pattern, service design |
-| [PROJECT_QA.md](PROJECT_QA.md) | 65 Q&A covering project features, services, and usage |
-| [CSHARP_MAUI_CONCEPTS.md](CSHARP_MAUI_CONCEPTS.md) | 65 Q&A on C# and .NET MAUI programming concepts |
 | [QUICK_TEST_GUIDE.md](QUICK_TEST_GUIDE.md) | Testing commands, test execution guide |
 | [FIREBASE_API_KEY_SETUP.md](FIREBASE_API_KEY_SETUP.md) | Step-by-step Firebase API key configuration |
 | [FIREBASE_EXPENSE_API.md](FIREBASE_EXPENSE_API.md) | Complete REST API endpoint documentation |
+| [SCREENSHOTS_GUIDE.md](SCREENSHOTS_GUIDE.md) | Guide for adding app screenshots to README |
 
 ---
 
