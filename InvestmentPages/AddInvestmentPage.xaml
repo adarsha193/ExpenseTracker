@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpenseTracker.InvestmentPages.AddInvestmentPage"
+             Title="Add Investment"
+             BackgroundColor="#F5F5F5">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+        <!-- Header -->
+        <Grid BackgroundColor="#FF9800" Padding="20,10">
+            <Label Text="📊 Add New Investment"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- Form -->
+        <ScrollView Grid.Row="1" Padding="20">
+            <VerticalStackLayout Spacing="15">
+                
+                <!-- Investment Frequency -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Investment Type" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+                    <Picker x:Name="InvestmentFrequencyPicker"
+                            BackgroundColor="White"
+                            TextColor="#333"
+                            Title="Select investment frequency"
+                            SelectedIndex="0">
+                        <Picker.Items>
+                            <x:String>One-Time</x:String>
+                            <x:String>Monthly SIP</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+
+                <!-- Investment Type -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Investment Category" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+                    <Picker x:Name="InvestmentTypePicker"
+                            BackgroundColor="White"
+                            TextColor="#333"
+                            Title="Select investment type"
+                            SelectedIndex="0">
+                        <Picker.Items>
+                            <x:String>Stocks</x:String>
+                            <x:String>Bonds</x:String>
+                            <x:String>Crypto</x:String>
+                            <x:String>Real Estate</x:String>
+                            <x:String>Mutual Funds</x:String>
+                            <x:String>Fixed Deposit</x:String>
+                            <x:String>Gold</x:String>
+                            <x:String>Other</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+
+                <!-- Investment Amount -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Investment Amount (₹)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+                    <Entry x:Name="AmountEntry"
+                           Placeholder="Enter amount"
+                           BackgroundColor="White"
+                           Keyboard="Numeric"
+                           TextColor="#333"
+                           PlaceholderColor="#999"
+                           Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- Return Rate -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Expected Return Rate (% per annum)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+                    <Entry x:Name="ReturnRateEntry"
+                           Placeholder="Enter return rate"
+                           BackgroundColor="White"
+                           Keyboard="Numeric"
+                           TextColor="#333"
+                           PlaceholderColor="#999"
+                           Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- Investment Date -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Investment Date" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+                    <DatePicker x:Name="DatePicker"
+                                BackgroundColor="White"
+                                TextColor="#333"/>
+                </VerticalStackLayout>
+
+                <!-- Description -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Description (Optional)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+                    <Editor x:Name="DescriptionEditor"
+                            Placeholder="Add description..."
+                            BackgroundColor="White"
+                            TextColor="#333"
+                            PlaceholderColor="#999"
+                            HeightRequest="100"
+                            Padding="12"/>
+                </VerticalStackLayout>
+
+                <!-- Summary -->
+                <Border Stroke="#FFE0B2" StrokeThickness="1" CornerRadius="12" Padding="15" BackgroundColor="#FFF3E0">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Investment Summary" FontAttributes="Bold" FontSize="14" TextColor="#E65100"/>
+                        <Grid ColumnDefinitions="*,Auto" Spacing="10">
+                            <Label Grid.Column="0" Text="Total Amount:" TextColor="#666"/>
+                            <Label Grid.Column="1" x:Name="SummaryAmountLabel" Text="₹0.00" FontAttributes="Bold" TextColor="#FF9800"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,Auto" Spacing="10">
+                            <Label Grid.Column="0" Text="Expected Annual Return:" TextColor="#666"/>
+                            <Label Grid.Column="1" x:Name="SummaryReturnLabel" Text="₹0.00" FontAttributes="Bold" TextColor="#FF9800"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Action Buttons -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,*" Padding="20" ColumnSpacing="10" RowSpacing="10">
+            <Button Grid.Column="0"
+                    Text="Cancel"
+                    BackgroundColor="#999"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Clicked="OnCancelClicked"/>
+            <Button Grid.Column="1"
+                    x:Name="SaveButton"
+                    Text="Save Investment"
+                    BackgroundColor="#FF9800"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Clicked="OnSaveClicked"/>
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
