@@ -1,31 +1,17 @@
 namespace ExpenseTracker.Services
 {
     /// <summary>
-    /// Notification Service - Local Alerts & Notifications Feature
-    /// 
-    /// FEATURES:
-    /// - Sends budget alert notifications
-    /// - Sends critical overspending alerts
-    /// - Sends warning alerts when approaching budget limits (90%)
-    /// - Sends daily budget summary notifications
-    /// - Platform-specific notification handling (Android, iOS, macOS, Windows)
-    /// 
-    /// NOTIFICATION TYPES:
-    /// - BudgetAlert: General budget notifications
-    /// - CriticalAlert: Overspending exceeded limit (🚨)
-    /// - WarningAlert: Approaching budget limit (⚠️)
-    /// - DailySummary: Daily budget status and exceeded categories
-    /// 
-    /// IMPLEMENTATION:
-    /// - Uses MAUI notification APIs for cross-platform support
-    /// - Android 8.0+: Notification channels for proper categorization
-    /// - Falls back to dialog service for UI alerts
-    /// - All notifications logged to debug console
-    /// 
-    /// INTEGRATION:
-    /// - Called by BudgetAlertService when alerts are triggered
-    /// - Scheduled by app for daily summary notifications
-    /// - User can configure notification preferences in settings
+    /// Handles local notifications and simple alert delivery for the app.
+    ///
+    /// This service sends budget-related alerts (warnings, critical overspend
+    /// notices, and daily summaries) and uses platform APIs where available.
+    /// It falls back to the app's dialog service when a system notification
+    /// isn't appropriate or supported.
+    ///
+    /// Integration notes:
+    /// - Triggered by `BudgetAlertService` when thresholds are reached.
+    /// - Daily summaries are scheduled by the app and delivered through this service.
+    /// - Users can control notification preferences from settings.
     /// </summary>
     public class NotificationService
     {
@@ -38,7 +24,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Initialize notification channel (required for Android 8.0+)
+        /// Create the Android notification channel (Android 8.0+).
         /// </summary>
         private void InitializeNotificationChannel()
         {
@@ -66,7 +52,8 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Send budget alert notification
+        /// Show a simple budget alert to the user. Uses the dialog service when
+        /// a platform notification API is not available.
         /// </summary>
         public async Task SendBudgetAlertAsync(string title, string message)
         {
@@ -87,7 +74,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Send critical overspending alert
+        /// Notify the user about a critical overspend in a category.
         /// </summary>
         public async Task SendCriticalAlertAsync(string category, decimal overage)
         {
@@ -97,7 +84,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Send warning when approaching budget limit (90%)
+        /// Send a warning when a category reaches a high percentage of its budget.
         /// </summary>
         public async Task SendWarningAsync(string category, decimal percentageUsed)
         {
@@ -107,7 +94,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Send daily budget summary
+        /// Deliver a daily summary listing categories that exceeded their budgets.
         /// </summary>
         public async Task SendDailySummaryAsync(List<(string Category, decimal Spent, decimal Budget)> summary)
         {
@@ -134,7 +121,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Schedule daily notification check (if supported by platform)
+        /// Schedule a daily callback to run notification checks (platform-dependent).
         /// </summary>
         public async Task ScheduleDailyCheckAsync(Action callback, TimeSpan scheduleTime)
         {

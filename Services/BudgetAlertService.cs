@@ -3,25 +3,17 @@ using ExpenseTracker.Models;
 namespace ExpenseTracker.Services
 {
     /// <summary>
-    /// Budget Alert Service - Budget Monitoring & Alert Feature
-    /// 
-    /// FEATURES:
-    /// - Monitors spending against user-defined budget limits
-    /// - Detects overspending in real-time
-    /// - Provides alert levels: Warning (90%), Critical (100%+)
-    /// - Tracks overage amounts and percentages
-    /// - Generates alerts for single categories or all categories
-    /// 
-    /// ALERT LEVELS:
-    /// - Green: < 75% of budget used
-    /// - Yellow: 75-90% of budget used (warning)
-    /// - Orange: 90-100% of budget used (caution)
-    /// - Red: > 100% of budget used (exceeded)
-    /// 
-    /// USAGE:
-    /// - Called by DashboardPage for real-time monitoring
-    /// - Used by NotificationService to send alerts
-    /// - Integrated with AISuggestionsService for recommendations
+    /// Monitors user budgets and produces alerts when limits are approached or exceeded.
+    ///
+    /// The service checks spending against configured budgets, categorizes the
+    /// alert level (warning, high, critical), and returns alert details that other
+    /// parts of the app (for example, `NotificationService` or the dashboard)
+    /// can consume.
+    ///
+    /// Typical uses:
+    /// - Periodic checks from the dashboard or a scheduled task
+    /// - On-demand checks for a specific category
+    /// - Integrates with AI suggestions and notification delivery
     /// </summary>
     public class BudgetAlertService
     {
@@ -33,7 +25,8 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Check all budget alerts for a user and return list of exceeded budgets
+        /// Check every budget for the given user and return alerts for budgets that
+        /// have been exceeded.
         /// </summary>
         public async Task<List<BudgetAlert>> CheckAllBudgetAlertsAsync(string userId)
         {
@@ -79,7 +72,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Check if a specific category has exceeded its budget
+        /// Check a single category and return an alert if it has exceeded the budget.
         /// </summary>
         public async Task<BudgetAlert?> CheckCategoryAlertAsync(string userId, string category)
         {
@@ -114,7 +107,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Get alert level based on spending percentage (90%, 100%, 110%+)
+        /// Map a spending percentage to an `AlertLevel` value.
         /// </summary>
         private AlertLevel GetAlertLevel(decimal percentageUsed)
         {
@@ -129,7 +122,7 @@ namespace ExpenseTracker.Services
         }
 
         /// <summary>
-        /// Log alert to Firebase for audit trail
+        /// Record an alert to the backend (placeholder for analytics/audit logging).
         /// </summary>
         public async Task LogAlertAsync(string userId, BudgetAlert alert)
         {
@@ -147,7 +140,7 @@ namespace ExpenseTracker.Services
     }
 
     /// <summary>
-    /// Budget alert details
+    /// Details describing a single budget alert.
     /// </summary>
     public class BudgetAlert
     {
@@ -162,7 +155,7 @@ namespace ExpenseTracker.Services
     }
 
     /// <summary>
-    /// Alert severity level
+    /// Severity level for budget alerts.
     /// </summary>
     public enum AlertLevel
     {

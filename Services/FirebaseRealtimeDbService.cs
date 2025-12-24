@@ -5,32 +5,19 @@ using ExpenseTracker.Models;
 namespace ExpenseTracker.Services;
 
 /// <summary>
-/// Firebase Realtime Database Integration Service - Core Backend Service
-/// 
-/// FEATURES:
-/// - Authentication: User login, registration, password recovery
-/// - Expense Management: CRUD operations for user expenses with categories
-/// - Budget Management: Set, retrieve, and monitor spending budgets
-/// - Profile Management: Store and retrieve user profile information
-/// - Salary & Investment Tracking: Manage income and investment portfolio
-/// - Real-time Synchronization: All data synced with Firebase RTDB
-/// 
-/// API ENDPOINTS:
-/// - Authentication: Firebase Identity Toolkit REST API
-/// - Database: Firebase Realtime Database REST API
-/// - Security: Uses auth tokens stored in SecureStorage
-/// 
-/// DATABASE STRUCTURE:
-/// /users/{userId} - User profile data
-/// /expenses/{userId}/{expenseId} - User's expenses
-/// /budgets/{userId}/{categoryId} - Budget allocations
-/// /salary/{userId} - Monthly salary info
-/// /investments/{userId}/{investmentId} - Investment portfolio
-/// 
-/// ERROR HANDLING:
-/// - All methods return response objects with Success flag and error messages
-/// - Firebase errors are parsed and converted to user-friendly messages
-/// - Network timeouts set to 30 seconds with retry capability
+/// Service that wraps Firebase Realtime Database and Auth REST APIs.
+///
+/// Responsibilities include authentication (login/registration/password
+/// reset), CRUD operations for expenses, budgets, salary and investments,
+/// and simple synchronization with the Firebase RTDB. Methods return
+/// response objects carrying success flags and user-friendly messages so
+/// callers can surface meaningful feedback to users.
+///
+/// Notes:
+/// - API endpoints used: Firebase Identity Toolkit (auth) and Realtime DB (data).
+/// - The service expects a Firebase Web API key to be provided at startup.
+/// - Network timeouts are set conservatively; callers should handle transient
+///   failures and retries where appropriate.
 /// </summary>
 public class FirebaseRealtimeDbService
 {

@@ -3,28 +3,30 @@ using System.Threading.Tasks;
 namespace ExpenseTracker.Services
 {
     /// <summary>
-    /// Interface for user dialog service - Abstraction for UI alerts and confirmations
-    /// Allows for mock implementations in testing and consistent UI interactions
+    /// Abstraction for showing alerts, confirmations, and action sheets to the user.
+    ///
+    /// Implementations can target platform dialogs or in-app UI, and can be
+    /// mocked in tests to avoid UI dependencies.
     /// </summary>
     public interface IUserDialogService
     {
         /// <summary>
-        /// Display a message alert dialog
+        /// Show a simple alert with a single dismiss button.
         /// </summary>
         Task ShowAlertAsync(string title, string message, string cancel = "OK");
 
         /// <summary>
-        /// Display a confirmation dialog and return user's choice
+        /// Show a confirmation dialog and return true if the user accepts.
         /// </summary>
         Task<bool> ShowConfirmAsync(string title, string message, string accept = "Yes", string cancel = "No");
 
         /// <summary>
-        /// Display a confirmation alert with Yes/No buttons
+        /// Convenience method for a Yes/No confirmation dialog.
         /// </summary>
         Task<bool> ShowConfirmationAsync(string title, string message);
 
         /// <summary>
-        /// Display an action sheet with multiple options
+        /// Show an action sheet with multiple options and return the selected value.
         /// </summary>
         Task<string?> ShowActionSheetAsync(string title, string cancel, string? destruction, string[] buttons);
     }

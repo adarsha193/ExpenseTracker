@@ -90,15 +90,33 @@ Your RTDB is correctly configured at:
 3. **Check Realtime Database**:
    - Go to Realtime Database
    - Ensure database is created and accessible
-   - Check Rules tab - should allow read/write for authenticated users:
+   - Check Rules tab - should allow read/write for all authenticated users:
    ```json
    {
      "rules": {
+       ".read": "auth != null",
+       ".write": "auth != null",
        "users": {
          "$uid": {
-           ".read": "$uid === auth.uid",
-           ".write": "$uid === auth.uid"
+           ".read": "$uid === auth.uid || auth != null",
+           ".write": "$uid === auth.uid || auth != null"
          }
+       },
+       "expenses": {
+         ".read": "auth != null",
+         ".write": "auth != null"
+       },
+       "budgets": {
+         ".read": "auth != null",
+         ".write": "auth != null"
+       },
+       "salary": {
+         ".read": "auth != null",
+         ".write": "auth != null"
+       },
+       "investments": {
+         ".read": "auth != null",
+         ".write": "auth != null"
        }
      }
    }
