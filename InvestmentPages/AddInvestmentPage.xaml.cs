@@ -46,12 +46,14 @@ public partial class AddInvestmentPage : ContentPage
         // Allow decimal format with optional negative (for validation purposes)
         if (!decimal.TryParse(entry.Text, out var value))
         {
-            entry.Text = entry.Text.Substring(0, entry.Text.Length - 1);
+            if (entry.Text.Length > 0)
+                entry.Text = entry.Text.Substring(0, entry.Text.Length - 1);
         }
         else if (entry == ReturnRateEntry && value < 0)
         {
             // Don't allow negative return rates
-            entry.Text = entry.Text.Substring(0, entry.Text.Length - 1);
+            if (entry.Text.Length > 0)
+                entry.Text = entry.Text.Substring(0, entry.Text.Length - 1);
             MainThread.BeginInvokeOnMainThread(async () =>
                 await _dialogService.ShowAlertAsync("Validation", "Return rate cannot be negative", "OK"));
         }
@@ -126,26 +128,31 @@ public partial class AddInvestmentPage : ContentPage
 
             var investment = _editingInvestment ?? new InvestmentModel();
             
-            // Get selected items safely
-            var frequencyIndex = InvestmentFrequencyPicker.SelectedIndex;
-            var typeIndex = InvestmentTypePicker.SelectedIndex;
+            // Get selected items safely using SelectedItem instead of Items[index]
+            investment.InvestmentFrequency = InvestmentFrequencyPicker.SelectedItem?.ToString() ?? "One-Time";
+            investment.InvestmentType = InvestmentTypePicker.SelectedItem?.ToString() ?? "Other";
             
-            investment.InvestmentFrequency = frequencyIndex >= 0 
-                ? InvestmentFrequencyPicker.Items[frequencyIndex] 
-                : "One-Time";
-            
-            investment.InvestmentType = typeIndex >= 0 
-                ? InvestmentTypePicker.Items[typeIndex] 
-                : "Other";
-            
-            if (decimal.TryParse(AmountEntry.Text, out var amount))
+            // Parse amount - ensure it's always set
+            if (decimal.TryParse(AmountEntry.Text, out var amount) && amount > 0)
                 investment.Amount = amount;
+            else
+                investment.Amount = 0;
             
-            if (decimal.TryParse(ReturnRateEntry.Text, out var returnRate))
+            // Parse return rate - optional
+            if (decimal.TryParse(ReturnRateEntry.Text, out var returnRate) && returnRate >= 0)
                 investment.ReturnRate = returnRate;
+            else
+                investment.ReturnRate = null;
             
             investment.InvestmentDate = DatePicker.Date ?? DateTime.Today;
-            investment.Description = DescriptionEditor.Text;
+            investment.Description = DescriptionEditor.Text ?? "";
+            
+            if (investment.Amount <= 0)
+            {
+                await _dialogService.ShowAlertAsync("Validation", "Investment amount must be greater than 0", "OK");
+                SaveButton.IsEnabled = true;
+                return;
+            }
 
             var response = await _firebaseService.SaveInvestmentAsync(_currentUserId!, investment);
 
@@ -155,7 +162,7 @@ public partial class AddInvestmentPage : ContentPage
                     _editingInvestment == null ? "Investment added successfully!" : "Investment updated successfully!", 
                     "OK");
                 EditInvestmentCache.Clear();
-                await Shell.Current.GoToAsync("///");
+                await Shell.Current.GoToAsync("..");
             }
             else
             {
@@ -174,7 +181,7 @@ public partial class AddInvestmentPage : ContentPage
 
     private async void OnCancelClicked(object? sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///");
+        await Shell.Current.GoToAsync("..");
     }
 
     private bool ValidateInput()

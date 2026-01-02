@@ -58,25 +58,29 @@
                 <!-- Investment Amount -->
                 <VerticalStackLayout Spacing="5">
                     <Label Text="Investment Amount (₹)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
-                    <Entry x:Name="AmountEntry"
-                           Placeholder="Enter amount"
-                           BackgroundColor="White"
-                           Keyboard="Numeric"
-                           TextColor="#333"
-                           PlaceholderColor="#999"
-                           Padding="12"/>
+                    <Border Stroke="#DDD" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                        <Entry x:Name="AmountEntry"
+                               Placeholder="Enter amount"
+                               BackgroundColor="Transparent"
+                               Keyboard="Numeric"
+                               TextColor="#333"
+                               PlaceholderColor="#999"
+                               Padding="12"/>
+                    </Border>
                 </VerticalStackLayout>
 
                 <!-- Return Rate -->
                 <VerticalStackLayout Spacing="5">
                     <Label Text="Expected Return Rate (% per annum)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
-                    <Entry x:Name="ReturnRateEntry"
-                           Placeholder="Enter return rate"
-                           BackgroundColor="White"
-                           Keyboard="Numeric"
-                           TextColor="#333"
-                           PlaceholderColor="#999"
-                           Padding="12"/>
+                    <Border Stroke="#DDD" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                        <Entry x:Name="ReturnRateEntry"
+                               Placeholder="Enter return rate"
+                               BackgroundColor="Transparent"
+                               Keyboard="Numeric"
+                               TextColor="#333"
+                               PlaceholderColor="#999"
+                               Padding="12"/>
+                    </Border>
                 </VerticalStackLayout>
 
                 <!-- Investment Date -->
@@ -90,13 +94,15 @@
                 <!-- Description -->
                 <VerticalStackLayout Spacing="5">
                     <Label Text="Description (Optional)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
-                    <Editor x:Name="DescriptionEditor"
-                            Placeholder="Add description..."
-                            BackgroundColor="White"
-                            TextColor="#333"
-                            PlaceholderColor="#999"
-                            HeightRequest="100"
-                            Padding="12"/>
+                    <Border Stroke="#DDD" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                        <Editor x:Name="DescriptionEditor"
+                                Placeholder="Add description..."
+                                BackgroundColor="Transparent"
+                                TextColor="#333"
+                                PlaceholderColor="#999"
+                                HeightRequest="100"
+                                Padding="12"/>
+                    </Border>
                 </VerticalStackLayout>
 
                 <!-- Summary -->

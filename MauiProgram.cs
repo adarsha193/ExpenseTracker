@@ -81,6 +81,30 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
+		// Android: remove the default underline/background on Entry and Editor controls
+		// This mapping runs only on Android builds and clears the native background.
+#if ANDROID
+		Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
+		{
+			if (handler.PlatformView is Android.Widget.EditText native)
+			{
+				native.SetBackgroundColor(Android.Graphics.Color.Transparent);
+				native.Background?.Dispose();
+				native.Background = null;
+			}
+		});
+
+		Microsoft.Maui.Handlers.EditorHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
+		{
+			if (handler.PlatformView is Android.Widget.EditText native)
+			{
+				native.SetBackgroundColor(Android.Graphics.Color.Transparent);
+				native.Background?.Dispose();
+				native.Background = null;
+			}
+		});
+#endif
+
 		var app = builder.Build();
 
 		// Service locator for parts of code that cannot use constructor injection yet.
