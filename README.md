@@ -209,33 +209,21 @@ ExpenseTracker/
 ├── 📂 ViewModels/                     # MVVM logic & state management
 │   └── DashboardPageViewModel.cs      # Dashboard view logic
 │
-├── 📂 LaunchScreen/                   # Authentication pages
+├── 📂 Views/                   # Views pages
 │   ├── LoginPage.xaml(.cs)            # User login
 │   ├── RegistrationPage.xaml(.cs)     # New user registration
 │   ├── ForgotPassword.xaml(.cs)       # Password recovery
 │   └── LaunchScreenPage.xaml(.cs)     # Welcome/splash screen
-│
-├── 📂 Dashboard/                      # Main application dashboard
 │   ├── DashboardPage.xaml(.cs)        # Dashboard UI
 │   └── DashboardShell.xaml(.cs)       # App shell navigation
-│
-├── 📂 ExpensePages/                   # Expense management UI
 │   ├── AddExpensePage.xaml(.cs)       # Create new expense
 │   ├── ViewAllExpensesPage.xaml(.cs)  # List all expenses
 │   └── ExpenseDetailPage.xaml(.cs)    # View/edit expense details
-│
-├── 📂 BudgetPages/                    # Budget management UI
 │   └── BudgetPage.xaml(.cs)           # Set & monitor budgets
-│
-├── 📂 SalaryPages/                    # Income management UI
 │   └── SalaryPage.xaml(.cs)           # Salary configuration
-│
-├── 📂 InvestmentPages/                # Investment portfolio UI
 │   ├── InvestmentPage.xaml(.cs)       # View investments
 │   ├── AddInvestmentPage.xaml(.cs)    # Add new investment
 │   └── EditInvestmentCache.cs         # Investment data cache
-│
-├── 📂 SliderView/                     # Settings & info pages
 │   ├── ProfilePage.xaml(.cs)          # User profile
 │   ├── SettingsPage.xaml(.cs)         # App settings
 │   ├── HelpPage.xaml(.cs)             # Help & support
