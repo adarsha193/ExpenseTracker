@@ -54,8 +54,7 @@
                           BackgroundColor="White"
                           SearchButtonPressed="OnSearchButtonPressed"
                           TextChanged="OnSearchTextChanged"
-                          FontSize="15"
-                          ShowsCancelButton="False"/>
+                          FontSize="15"/>
             </VerticalStackLayout>
 
             <!-- Loading Indicator -->
@@ -113,8 +112,7 @@
                                CornerRadius="16"
                                Padding="16"
                                HasShadow="False"
-                               Margin="20,8,20,8"
-                               BorderWidth="1">
+                               Margin="20,8,20,8">
                             <VerticalStackLayout Spacing="12">
                                 <!-- Top Row: Icon, Category, Amount -->
                                 <Grid ColumnDefinitions="56,*,Auto" ColumnSpacing="14">

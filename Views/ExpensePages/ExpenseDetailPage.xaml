@@ -68,8 +68,7 @@
                            BorderColor="#E5E7EB"
                            CornerRadius="14"
                            Padding="16"
-                           HasShadow="False"
-                           BorderWidth="1">
+                           HasShadow="False">
                         <HorizontalStackLayout Spacing="12">
                             <Frame BackgroundColor="#FEF08A"
                                    BorderColor="Transparent"
@@ -100,8 +99,7 @@
                            BorderColor="#E5E7EB"
                            CornerRadius="14"
                            Padding="16"
-                           HasShadow="False"
-                           BorderWidth="1">
+                           HasShadow="False">
                         <Label x:Name="DescriptionLabel" 
                                Text="No description provided" 
                                FontSize="14" 
@@ -124,7 +122,7 @@
                            CornerRadius="14"
                            Padding="16"
                            HasShadow="False"
-                           BorderWidth="1"
+
                            IsVisible="False">
                         <HorizontalStackLayout Spacing="12">
                             <Frame BackgroundColor="#DBEAFE"
@@ -151,7 +149,6 @@
                            CornerRadius="14"
                            Padding="16"
                            HasShadow="False"
-                           BorderWidth="1"
                            IsVisible="False">
                         <HorizontalStackLayout Spacing="12">
                             <Frame BackgroundColor="#DCFCE7"
@@ -178,7 +175,6 @@
                            CornerRadius="14"
                            Padding="16"
                            HasShadow="False"
-                           BorderWidth="1"
                            IsVisible="False">
                         <VerticalStackLayout Spacing="8">
                             <HorizontalStackLayout Spacing="12">

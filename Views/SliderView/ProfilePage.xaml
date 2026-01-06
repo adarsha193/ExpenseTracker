@@ -87,7 +87,7 @@
                                 PlaceholderColor="#9CA3AF"
                                 BackgroundColor="Transparent"
                                 TextColor="#1F2937"
-                                Padding="12"
+                                
                                 ClearButtonVisibility="Never"/>
                            </Border>
                     </VerticalStackLayout>
@@ -106,7 +106,7 @@
                                 BackgroundColor="Transparent"
                                 TextColor="#1F2937"
                                 Keyboard="Email"
-                                Padding="12"
+                                
                                 ClearButtonVisibility="Never"/>
                            </Border>
                     </VerticalStackLayout>
@@ -125,7 +125,6 @@
                                 BackgroundColor="Transparent"
                                 TextColor="#1F2937"
                                 Keyboard="Telephone"
-                                Padding="12"
                                 ClearButtonVisibility="Never"/>
                            </Border>
                     </VerticalStackLayout>
@@ -143,7 +142,6 @@
                                 PlaceholderColor="#9CA3AF"
                                 BackgroundColor="Transparent"
                                 TextColor="#1F2937"
-                                Padding="12"
                                 ClearButtonVisibility="Never"/>
                            </Border>
                     </VerticalStackLayout>

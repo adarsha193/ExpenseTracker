@@ -20,7 +20,7 @@
             <VerticalStackLayout Padding="20,20" Spacing="20">
                 
                 <!-- Current Salary Card -->
-                <Border Stroke="#E0E0E0" StrokeThickness="1" CornerRadius="12" Padding="20" BackgroundColor="White">
+                <Border Stroke="#E0E0E0" StrokeThickness="1"  Padding="20" BackgroundColor="White">
                     <VerticalStackLayout Spacing="10">
                         <Label Text="Current Monthly Salary" FontAttributes="Bold" FontSize="16"/>
                         <Label x:Name="CurrentSalaryLabel" Text="No salary entered" FontSize="20" TextColor="#2196F3"/>
@@ -29,14 +29,14 @@
                 </Border>
 
                 <!-- Salary Form -->
-                <Border Stroke="#E0E0E0" StrokeThickness="1" CornerRadius="12" Padding="20" BackgroundColor="White">
+                <Border Stroke="#E0E0E0" StrokeThickness="1"  Padding="20" BackgroundColor="White">
                     <VerticalStackLayout Spacing="15">
                         <Label Text="Enter Salary Details" FontAttributes="Bold" FontSize="16"/>
                         
                         <!-- Amount -->
                         <VerticalStackLayout Spacing="5">
                             <Label Text="Monthly Amount (₹)" FontAttributes="Bold" FontSize="14"/>
-                            <Border Stroke="#2196F3" StrokeThickness="1" CornerRadius="8" Padding="12">
+                            <Border Stroke="#2196F3" StrokeThickness="1" Padding="12">
                                 <Entry x:Name="AmountEntry"
                                        Placeholder="Enter salary amount"
                                        Keyboard="Numeric"
@@ -60,7 +60,7 @@
                         <!-- Notes -->
                         <VerticalStackLayout Spacing="5">
                             <Label Text="Notes (Optional)" FontAttributes="Bold" FontSize="14"/>
-                            <Border Stroke="#2196F3" StrokeThickness="1" CornerRadius="8" Padding="12">
+                            <Border Stroke="#2196F3" StrokeThickness="1"  Padding="12">
                                 <Entry x:Name="NotesEntry"
                                        Placeholder="Any additional notes"
                                        ClearButtonVisibility="WhileEditing"

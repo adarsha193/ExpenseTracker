@@ -1,2 +1,4 @@
 {
+    "scm.compactFolders": true,
+    "explorer.compactFolders": false
 }

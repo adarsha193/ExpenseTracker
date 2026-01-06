@@ -47,7 +47,6 @@
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
                                Keyboard="Email"
-                               Padding="12"
                                ClearButtonVisibility="Never"/>
                     </Border>
                 </VerticalStackLayout>
@@ -65,7 +64,6 @@
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
                                IsPassword="True"
-                               Padding="12"
                                ClearButtonVisibility="Never"/>
                     </Border>
                 </VerticalStackLayout>
@@ -113,7 +111,7 @@
                            TextColor="#6B7280"/>
                     <Label Text="Sign Up"
                               FontSize="13"
-                              TextColor="{x:Static resx:Strings.SignUp}"
+                              TextColor="#6366F1"
                               FontAttributes="Bold">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnSignUpTapped"/>

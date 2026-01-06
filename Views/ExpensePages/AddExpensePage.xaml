@@ -41,8 +41,7 @@
                     <Picker x:Name="CategoryPicker"
                             Title="Select Category"
                             BackgroundColor="White"
-                            TextColor="#1F2937"
-                            CornerRadius="8">
+                            TextColor="#1F2937">
                         <Picker.Items>
                             <x:String>Food</x:String>
                             <x:String>Travel</x:String>
@@ -62,15 +61,13 @@
                            FontSize="14"
                            FontAttributes="Bold"
                            TextColor="#1F2937"/>
-                    <Border Stroke="#E5E7EB" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                    <Border Stroke="#E5E7EB" StrokeThickness="1"  BackgroundColor="White" Padding="0">
                         <Entry x:Name="AmountEntry"
                                Placeholder="Enter amount"
                                PlaceholderColor="#9CA3AF"
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
-                               Keyboard="Numeric"
-                               CornerRadius="8"
-                               Padding="12"/>
+                               Keyboard="Numeric"/>
                     </Border>
                 </VerticalStackLayout>
 
@@ -80,14 +77,12 @@
                            FontSize="14"
                            FontAttributes="Bold"
                            TextColor="#1F2937"/>
-                    <Border Stroke="#E5E7EB" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                    <Border Stroke="#E5E7EB" StrokeThickness="1"  BackgroundColor="White" Padding="0">
                         <Editor x:Name="DescriptionEditor"
                                 Placeholder="Enter description (optional)"
                                 PlaceholderColor="#9CA3AF"
                                 BackgroundColor="Transparent"
                                 TextColor="#1F2937"
-                                CornerRadius="8"
-                                Padding="12"
                                 HeightRequest="100"/>
                     </Border>
                 </VerticalStackLayout>
@@ -98,14 +93,12 @@
                            FontSize="14"
                            FontAttributes="Bold"
                            TextColor="#1F2937"/>
-                    <Border Stroke="#E5E7EB" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                    <Border Stroke="#E5E7EB" StrokeThickness="1" BackgroundColor="White" Padding="0">
                         <Entry x:Name="ShopNameEntry"
                                Placeholder="Enter shop name (optional)"
                                PlaceholderColor="#9CA3AF"
                                BackgroundColor="Transparent"
-                               TextColor="#1F2937"
-                               CornerRadius="8"
-                               Padding="12"/>
+                               TextColor="#1F2937"/>
                     </Border>
                 </VerticalStackLayout>
 
@@ -115,14 +108,12 @@
                            FontSize="14"
                            FontAttributes="Bold"
                            TextColor="#1F2937"/>
-                    <Border Stroke="#E5E7EB" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                    <Border Stroke="#E5E7EB" StrokeThickness="1"  BackgroundColor="White" Padding="0">
                         <Entry x:Name="AddressEntry"
                                Placeholder="Enter address (optional)"
                                PlaceholderColor="#9CA3AF"
                                BackgroundColor="Transparent"
-                               TextColor="#1F2937"
-                               CornerRadius="8"
-                               Padding="12"/>
+                               TextColor="#1F2937"/>
                     </Border>
                 </VerticalStackLayout>
 
@@ -132,14 +123,12 @@
                            FontSize="14"
                            FontAttributes="Bold"
                            TextColor="#1F2937"/>
-                    <Border Stroke="#E5E7EB" StrokeThickness="1" CornerRadius="8" BackgroundColor="White" Padding="0">
+                    <Border Stroke="#E5E7EB" StrokeThickness="1"  BackgroundColor="White" Padding="0">
                         <Entry x:Name="LocationEntry"
                                Placeholder="Enter location (optional)"
                                PlaceholderColor="#9CA3AF"
                                BackgroundColor="Transparent"
-                               TextColor="#1F2937"
-                               CornerRadius="8"
-                               Padding="12"/>
+                               TextColor="#1F2937"/>
                     </Border>
                 </VerticalStackLayout>
 
@@ -152,8 +141,7 @@
                     <DatePicker x:Name="DatePicker"
                                 BackgroundColor="White"
                                 TextColor="#1F2937"
-                                Date="{Binding Source={x:Static System:DateTime.Today}}"
-                                CornerRadius="8"/>
+                                Date="{Binding Source={x:Static System:DateTime.Today}}"/>
                 </VerticalStackLayout>
 
                 <!-- BUTTONS -->

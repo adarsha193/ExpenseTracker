@@ -46,7 +46,6 @@
                                PlaceholderColor="#9CA3AF"
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
-                               Padding="12"
                                ClearButtonVisibility="Never"/>
                     </Border>
                 </VerticalStackLayout>
@@ -64,7 +63,6 @@
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
                                Keyboard="Email"
-                               Padding="12"
                                ClearButtonVisibility="Never"/>
                           </Border>
                 </VerticalStackLayout>
@@ -82,7 +80,6 @@
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
                                IsPassword="True"
-                               Padding="12"
                                ClearButtonVisibility="Never"
                                AutomationProperties.IsInAccessibleTree="False"/>
                           </Border>
@@ -101,7 +98,6 @@
                                BackgroundColor="Transparent"
                                TextColor="#1F2937"
                                IsPassword="True"
-                               Padding="12"
                                ClearButtonVisibility="Never"
                                AutomationProperties.IsInAccessibleTree="False"/>
                           </Border>

@@ -36,7 +36,6 @@
            <Border Grid.Row="0"
         Stroke="#E0E0E0"
         StrokeThickness="1"
-        CornerRadius="12"
         Padding="20"
         Margin="20,20,20,10"
         BackgroundColor="White">
@@ -82,7 +81,6 @@
                     x:Name="AlertSummaryBox"
                     Stroke="#FF5252"
                     StrokeThickness="2"
-                    CornerRadius="12"
                     Padding="15"
                     Margin="20,10"
                     BackgroundColor="#FFEBEE"
@@ -129,7 +127,7 @@
                                 VerticalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border Stroke="#E0E0E0" StrokeThickness="1" CornerRadius="12" Padding="15" Margin="0,8" BackgroundColor="White">
+                            <Border Stroke="#E0E0E0" StrokeThickness="1" Padding="15" Margin="0,8" BackgroundColor="White">
                                 <VerticalStackLayout Spacing="10">
                                     <!-- Category and Budget -->
                                     <Grid ColumnDefinitions="*,Auto">
@@ -150,7 +148,6 @@
                                                  Progress="{Binding SpendingPercentage, Converter={StaticResource ProgressConverter}}"
                                                  ProgressColor="{Binding IsExceeded, Converter={StaticResource ExceededColorConverter}}"
                                                  BackgroundColor="#E1BEE7"
-                                                 CornerRadius="4"
                                                  HeightRequest="8"/>
 
                                     <!-- Spending Info -->

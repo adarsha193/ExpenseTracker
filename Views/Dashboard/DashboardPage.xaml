@@ -15,7 +15,6 @@
             <local:DataEmptyColorConverter x:Key="DataEmptyColorConverter"/>
             <local:ZeroToNotSetConverter x:Key="ZeroToNotSetConverter"/>
             <local:ZeroToSetUpConverter x:Key="ZeroToSetUpConverter"/>
-            <local:EmptyListHeightConverter x:Key="EmptyListHeightConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -156,8 +155,7 @@
                                    BorderColor="#E5E7EB"
                                    CornerRadius="14"
                                    Padding="14"
-                                   HasShadow="False"
-                                   BorderWidth="1">
+                                   HasShadow="False">
                                 <VerticalStackLayout Spacing="8">
                                     <Label Text="💵" FontSize="22" VerticalOptions="Start"/>
                                     <Label Text="Your Salary" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
@@ -173,8 +171,7 @@
                                    BorderColor="#E5E7EB"
                                    CornerRadius="14"
                                    Padding="14"
-                                   HasShadow="False"
-                                   BorderWidth="1">
+                                   HasShadow="False">
                                 <VerticalStackLayout Spacing="8">
                                     <Label Text="💹" FontSize="22" VerticalOptions="Start"/>
                                     <Label Text="Your Investments" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
@@ -190,8 +187,7 @@
                                    BorderColor="#E5E7EB"
                                    CornerRadius="14"
                                    Padding="14"
-                                   HasShadow="False"
-                                   BorderWidth="1">
+                                   HasShadow="False">
                                 <VerticalStackLayout Spacing="8">
                                     <Label Text="💳" FontSize="22" VerticalOptions="Start"/>
                                     <Label Text="Budget Progress" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
@@ -207,8 +203,7 @@
                                    BorderColor="#E5E7EB"
                                    CornerRadius="14"
                                    Padding="14"
-                                   HasShadow="False"
-                                   BorderWidth="1">
+                                   HasShadow="False">
                                 <VerticalStackLayout Spacing="8">
                                     <Label Text="📈" FontSize="22" VerticalOptions="Start"/>
                                     <Label Text="Savings Rate" FontSize="12" TextColor="#9CA3AF" FontAttributes="Bold"/>
@@ -224,14 +219,13 @@
                         <Border x:Name="SetupGuideBox"
                                 Stroke="#FF8C00"
                                 StrokeThickness="2"
-                                CornerRadius="16"
                                 BackgroundColor="White"
                                 Padding="0"
                                 Margin="0,16,0,0"
                                 IsVisible="False">
                             <VerticalStackLayout Spacing="0">
                                 <!-- Header -->
-                                <Grid BackgroundColor="#FF8C00" Padding="16" CornerRadius="14,14,0,0">
+                                <Grid BackgroundColor="#FF8C00" Padding="16">
                                     <VerticalStackLayout Spacing="4">
                                         <Label Text="Quick Setup"
                                                FontSize="18"
@@ -317,8 +311,7 @@
                            BorderColor="#E5E7EB"
                            CornerRadius="16"
                            Padding="12"
-                           HasShadow="False"
-                           BorderWidth="1">
+                           HasShadow="False">
 
                         <VerticalStackLayout Spacing="10">
 
@@ -409,8 +402,7 @@
 
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Horizontal"
-                                                   ItemSpacing="12"
-                                                   ScrollHorizontalItemSpacing="0"/>
+                                                   ItemSpacing="12"/>
                             </CollectionView.ItemsLayout>
 
                             <CollectionView.ItemTemplate>
@@ -421,7 +413,6 @@
                                            CornerRadius="16"
                                            Padding="0"
                                            HasShadow="False"
-                                           BorderWidth="1"
                                            WidthRequest="280"
                                            HeightRequest="150"
                                            Margin="0,0,0,10">
@@ -489,8 +480,7 @@
                                             HorizontalOptions="Fill"
                                             VerticalOptions="Center"
                                             Padding="20,8,20,8"
-                                            Spacing="8"
-                                            HeightRequest="Auto">
+                                            Spacing="8">
                             <Label Text="💳"
                                    FontSize="32"
                                    HorizontalOptions="Center"/>
